@@ -1,0 +1,305 @@
+﻿
+@{
+    ViewBag.Title = "RequisitoActividad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ol class="breadcrumb mb-4 mt-4">
+    <li class="breadcrumb-item">Administrador gestion humana HV</li>
+    <li class="breadcrumb-item active">Requisito - Actividad</li>
+</ol>
+
+<div class="row g-3">
+    <div class="col-6 border border-2 rounded-1 p-2 m-2">
+        <p>Actividades</p>
+        <table id="tablaActividad" class="table table-hover" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Actividad</th>
+                    <th>Tipo de Actividad</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="bodyactividad">
+            </tbody>
+        </table>
+    </div>
+    <div class="col-5 border border-2 rounded-1 p-2 m-2">
+        <p>Requisitos legales</p>
+        <table id="tablaRLegal" class="table table-hover" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Actividad</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="bodyRlegal">
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="border border border-2 rounded-1 p-2 m-2" id="content">
+    <p>Requisito Por Actividad</p>
+    <button type="button" class="btn btn-primary m-2 " onclick="Guardar()">Guardar Requisito Por Actividad</button>
+    <table id="tablaRequisitoActivid" class="table table-hover " style="width:100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Actividad</th>
+                <th>Requisitos de la actividad</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<div class="modal" id="FormModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Error</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="mensajeError" class="alert alert-danger mt-2" role="alert">
+                    <p id="errormesaje">Modal body text goes here.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="modalresult" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Mensaje</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+
+                Operación exitosa
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    <script>
+
+
+        var tabladataActividad;
+        var tabladataRLegal;
+        var tabladataRequisitoActivid;
+
+        jQuery.ajax({
+            url: '@Url.Action("ListarActividades", "Home")',
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                $.each(response.data, function (i, element) {
+                    $("<tr>").append(
+                        $("<td>").text(element.IdActividad),
+                        $("<td>").text(element.NombreActividad),
+                        $("<td>").text(element.TipoActividad),
+                        $("<td>").append(
+                            $("<input>").addClass("form-check-input").attr({ "type": "radio", "name": "Actividad", "value": element.IdActividad, "id": "a"+i }),
+                        //    $("<button>").addClass("btn btn-primary btn-sm btn-editar").attr({ "type": "button", "onclick":"Guardar()"}),
+                        ),
+                    ).appendTo("#bodyactividad")
+                })
+
+                //coneverti en datatable
+                tabladataActividad = $("#tablaActividad").DataTable({
+                    responsive: true,
+                    ordering: false,
+                    "language": {
+                        "url": "https://cdn.datatables.net/plug-ins/1.13.3/i18n/es-ES.json"
+                    }
+
+                })
+            }
+
+        })
+
+
+        jQuery.ajax({
+            url: '@Url.Action("ListarCRequisitoLegal", "Home")',
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                $.each(response.data, function (i, element) {
+                    $("<tr>").append(
+                        $("<td>").text(element.IdCrearRequisitoLegal),
+                        $("<td>").text(element.NombreRequisito),
+                        $("<td>").append(
+                            $("<input>").addClass("form-check-input").attr({ "type": "radio", "name": "RequisitoLeg", "value": element.IdCrearRequisitoLegal, "id": "r"+i }),
+                           /* $("<button>").addClass("btn btn-primary btn-sm btn-editar").attr({ "type": "button", "onclick":"Guardar()"}),*/
+                        ),
+                    ).appendTo("#bodyRlegal")
+                })
+
+                //coneverti en datatable
+                tabladataRLegal = $("#tablaRLegal").DataTable({
+                    responsive: true,
+                    ordering: false,
+                    "language": {
+                        "url": "https://cdn.datatables.net/plug-ins/1.13.3/i18n/es-ES.json"
+                    }
+
+                })
+            }
+
+        })
+
+        tabladataRequisitoActivid = $("#tablaRequisitoActivid").DataTable({
+            responsive: true,
+            ordering: false,
+            "ajax": {
+                url: '@Url.Action("ListarRequisitoPorActividad", "Home")',
+                type: "GET",
+                dataType: "json",
+            },
+            "columns": [
+                { "data": "IdRequisitoActividad" },
+                { "data": "oActividad.NombreActividad" },
+                { "data": "oRequisitoLegal.NombreRequisito" },
+                {
+                      "defaultContent": '<button type="button" class="btn btn-danger btn-sm ms-2 btn-eliminar"><i class="fas fa-trash"></i></button>',
+                      "orderable": false,
+                      "searchable": false,
+                      "width": "90px"
+                 }
+            ],
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.13.3/i18n/es-ES.json"
+            }
+
+        });
+
+
+
+
+
+        //-----------------------------eliminar
+
+        $("#tablaRequisitoActivid tbody").on("click", '.btn-eliminar', function () {
+            var RASeleccionado = $(this).closest("tr")
+
+            //data es un json porque data() retorna un json
+            var data = tabladataRequisitoActivid.row(RASeleccionado).data()
+            swal({
+                title: "Estas Seguro?",
+                text: "¿Desea eliminar este Requisito Por Actividad?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-primary",
+                confirmButtonText: "Si",
+                cancelButtonText: "No",
+                closeOnConfirm: true
+            },
+            function () {
+                jQuery.ajax({
+                    url: '@Url.Action("EliminarRequisitoPorActividad", "Home")',
+                    type: "POST",
+                    data: JSON.stringify({ id: data.IdRequisitoActividad }),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+
+                        if (data.resultado) {
+                            tabladataRequisitoActivid.row(RASeleccionado).remove().draw()
+                        } else {
+                            swal("No se pudo eliminar", data.mensaje,"error")
+                        }
+
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                })
+            })
+
+        })
+
+
+
+        function Guardar() {
+
+            var idAct = $("input[name=Actividad]:checked").val()
+            var idReq = $("input[name=RequisitoLeg]:checked").val()
+
+
+            console.log(idAct, idReq)
+
+            if (idReq != undefined && idAct != undefined) {
+
+                jQuery.ajax({
+                    url: '@Url.Action("GuardarRequisitoPorActividad", "Home")',
+                    type: "POST",
+                    data: JSON.stringify({ idActividad: idAct, idRequisitoL: idReq }),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+
+                        $("#content").LoadingOverlay("hide")
+
+                        if (data.resultado != 0) {
+                            tabladataRequisitoActivid.row.add(data.objeto).draw(false)
+                            $("#modalresult").modal("show")
+                        } else {
+                            $("#errormesaje").text(data.mensaje)
+                            $("#FormModal").modal("show")
+                        }
+
+                    },
+                    error: function (error) {
+                        $("#content").LoadingOverlay("hide")
+                        $("#errormesaje").text("Error Ajax")
+                        $("#FormModal").modal("show")
+                    },
+                    beforeSend: function () {
+                        $("#content").LoadingOverlay("show", {
+                            imageResizeFactor: 2,
+                            text: "Cargando...",
+                            size:14
+                        })
+                    }
+                });
+            } else {
+                $("#errormesaje").text("Por favor seleccione una actividad y un Requisito Legal")
+                $("#FormModal").modal("show")
+            }
+
+
+        }
+
+        //$("#tablaActividad tbody").on("click", '.btn-editar', function () {
+        //    filaSeleccionada = $(this).closest("tr")
+
+        //    //data es un json porque data() retorna un json
+        //    var data = tabladataActividad.row(filaSeleccionada).data()
+        //    /*console.log(data)*/
+
+        //    console.log(data)
+
+        //})
+    </script>
+
+}

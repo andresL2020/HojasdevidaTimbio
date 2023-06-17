@@ -1,0 +1,151 @@
+﻿
+@{
+    ViewBag.Title = "Buscar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mb-3 mt-2">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow p-3 mb-4 bg-body rounded border border-1" style="width:100%">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link text-primary" href="@Url.Action("Buscar","Verificar")">Buscar</a>
+                    <a class="nav-link" href="@Url.Action("DatosPersonales","Verificar")">Datos Personales</a>
+                    <a class="nav-link" href="@Url.Action("FormacionAcademica","Verificar")">Formacion Academica</a>
+                    <a class="nav-link" href="@Url.Action("Capacitaciones","Verificar")">Cursos</a>
+                    <a class="nav-link" href="@Url.Action("Idiomas","Verificar")">Idiomas</a>
+                    <a class="nav-link" href="@Url.Action("ExperienciaLaboral","Verificar")">ExLaboral</a>
+                    <a class="nav-link" href="@Url.Action("DatosLaborales","Verificar")">Datos Laborales</a>
+                    <a class="nav-link" href="@Url.Action("Requisitos","Verificar")">Requisitos</a>
+                    <a class="nav-link" href="@Url.Action("Reporte","Verificar")">Reporte</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-briefcase"></i> <span class="text-secondary">Verificar Hoja De Vida/ Buscar</span>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <form class="mb-3" action="@Url.Action("exportarReporte","Verificar")" method="post">
+                <div class="row align-items-end">
+                    <div class="col-sm-3">
+                        <label for="txtConsultar" class="form-label">Numero de Documento:</label>
+                        <input type="text" class="form-control" id="txtConsultar" value="">
+                    </div>
+                    <div class="col-sm-3">
+                        <button id="btnconsultar" type="button" class="btn btn-primary ">Consultar</button>
+                        <button id="btnexportar" type="submit" class="btn btn-success" name="numero"><i class="fas fa-file-excel mx-1"></i>Exportar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <style>
+            #miTabla_wrapper {
+                overflow-x: auto;
+            }
+        </style>
+        <div class="miTabla_wrapper">
+            <table id="tabla" class="cell-border table-responsive">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Cédula</th>
+                        <th>Nombre</th>
+                        <th>Género</th>
+                        <th>Fecha Nac.</th>
+                        <th>Correo</th>
+                        <th>Telefono</th>
+                        <th>Sindicato</th>
+                        <th>Profesión</th>
+                        <th>Actividad</th>
+                        <th>Fec. Ingreso</th>
+                        <th>Fec. Retiro</th>
+                        <th>Estado</th>
+                        <th>Verificado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>       
+    </div>
+</div>
+<div class="modal fade" id="modalresult" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Mensaje</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+
+                Operación exitosa
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+
+        var tabladata
+
+        var Url = '@Url.Action("ListarBuscar", "Verificar")'
+
+        $(document).ready(function () {
+            tabladata = $("#tabla").DataTable({
+                /*responsive: true,*/
+                scrollX: true,
+                ordering: false,
+                "ajax": {
+                    url: Url,
+                    type: "GET",
+                    dataType: "json",
+                },
+                "columns": [
+                    { "data":"IdPersona" },
+                    { "data": "Cedula" },
+                    { "data": "Nombre" },
+                    { "data": "Genero" },
+                    { "data": "FechaNacimiento" },
+                    { "data": "CorreoElectronico" },
+                    { "data": "Telefono" },
+                    { "data": "Sindicato" },
+                    { "data": "Profesion" },
+                    { "data": "Actividad" },
+                    { "data": "FechaIngreso" },
+                    { "data": "FechaRetiro" },
+                    { "data": "Estado" },
+                    { "data": "Verificado" },
+
+                ],
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.13.3/i18n/es-ES.json"
+                }
+            })
+
+            $("#btnconsultar").on("click", function () {
+
+                var nueva_url = '@Url.Action("Consultar", "Verificar")' +
+                "?documento=" + $("#txtConsultar").val()
+
+                tabladata.ajax.url(nueva_url).load();
+                /*$("#modalresult").modal("show")*/
+            })
+
+        });
+
+
+    </script>
+
+}

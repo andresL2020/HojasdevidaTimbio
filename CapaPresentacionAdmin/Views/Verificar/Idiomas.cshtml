@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewBag.Title = "Idiomas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mb-3 mt-2">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow p-3 mb-4 bg-body rounded border border-1" style="width:100%">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="@Url.Action("Buscar","Verificar")">Buscar</a>
+                    <a class="nav-link" href="@Url.Action("DatosPersonales","Verificar")">Datos Personales</a>
+                    <a class="nav-link" href="@Url.Action("FormacionAcademica","Verificar")">Formacion Academica</a>
+                    <a class="nav-link" href="@Url.Action("Capacitaciones","Verificar")">Cursos</a>
+                    <a class="nav-link text-primary" href="@Url.Action("Idiomas","Verificar")">Idiomas</a>
+                    <a class="nav-link" href="@Url.Action("ExperienciaLaboral","Verificar")">ExLaboral</a>
+                    <a class="nav-link" href="@Url.Action("DatosLaborales","Verificar")">Datos Laborales</a>
+                    <a class="nav-link" href="@Url.Action("Requisitos","Verificar")">Requisitos</a>
+                    <a class="nav-link" href="@Url.Action("Reporte","Verificar")">Reporte</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-briefcase"></i>  <span class="text-secondary">Verificar Hoja De Vida/ Idiomas</span>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-3">
+                <p class="form-label text-danger" id="idNombrec" style="font-size: 13px">NOMBRE DE LA PERSONA A VERIFICAR</p>
+            </div>
+            <div class="col-6">
+                <p class="form-label" id="idArea" for="validationCustom05" style="font-size:13px">UNION DE EMPLEADOS TRABAJADORES Y CONTRATISTAS DE LA SALUD - UTRASSALUD Gestion Humana Profecional del Talento Humano</p>
+            </div>
+            <div class="col-3">
+                <p class="form-label" id="idverific" for="validationCustom05" style="font-size:13px">Confirmado:</p>
+            </div>
+        </div>
+
+        <table id="tabla" class="table table-hover mt-4" style="width:100%; font-size:12px">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Idioma</th>
+                    <th>Lo Habla</th>
+                    <th>Lo Lee</th>
+                    <th>Lo Escribe</th>
+                    <th>......</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+@section scripts{
+
+    <script>
+
+        var filaSeleccionada;
+        var tabladata;
+
+        var Url = '@Url.Action("ListarIdiomas", "Verificar")';
+
+
+        jQuery.ajax({
+            url: '@Url.Action("ListarFAcademica", "Verificar")',
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                $("#idNombrec").text(response.data.NombreCompleto)
+                $("#idverific").text("Confirmado: " + response.data.Verificado)
+
+                if (response.data.Verificado != 'Si') {
+                    $('#idNombrec').addClass('text-danger');
+                } else {
+                    $('#idNombrec').removeClass('text-danger');
+                    $('#idNombrec').addClass('text-primary');
+                }
+
+            }
+
+        })
+
+
+        jQuery.ajax({
+            url: '@Url.Action("ListarDatosLaborales", "Verificar")',
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                const dLaboral = response.data[0]
+                $("#idArea").text(dLaboral.NombreArea)
+
+
+            }
+
+        })
+
+        tabladata = $("#tabla").DataTable({
+            responsive: true,
+            ordering: false,
+            "ajax": {
+                url: Url,
+                type: "GET",
+                dataType: "json",
+            },
+            "columns": [
+                { "data": "IdIdiomas" },
+                { "data": "Idioma" },
+                { "data": "LoHabla" },
+                { "data": "LoLee" },
+                { "data": "LoEscribe" },
+                {
+                    "defaultContent": '<button type="button" onclick="abrirModal()" class="btn btn-outline-success btn-sm btn-editar">Obervacion y Guardar</i></button>',
+                    "orderable": false,
+                    "searchable": false,
+                    "width": "90px"
+                }
+            ],
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.13.3/i18n/es-ES.json"
+            }
+
+        });
+
+
+    </script>
+
+
+}

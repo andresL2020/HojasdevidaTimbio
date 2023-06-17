@@ -1,0 +1,210 @@
+﻿
+
+@{
+    ViewBag.Title = "Reporte";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="mb-3 mt-2">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow p-3 mb-4 bg-body rounded border border-1" style="width:100%">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="@Url.Action("Buscar","Verificar")">Buscar</a>
+                    <a class="nav-link" href="@Url.Action("DatosPersonales","Verificar")">Datos Personales</a>
+                    <a class="nav-link" href="@Url.Action("FormacionAcademica","Verificar")">Formacion Academica</a>
+                    <a class="nav-link" href="@Url.Action("Capacitaciones","Verificar")">Cursos</a>
+                    <a class="nav-link" href="@Url.Action("Idiomas","Verificar")">Idiomas</a>
+                    <a class="nav-link" href="@Url.Action("ExperienciaLaboral","Verificar")">ExLaboral</a>
+                    <a class="nav-link" href="@Url.Action("DatosLaborales","Verificar")">Datos Laborales</a>
+                    <a class="nav-link" href="@Url.Action("Requisitos","Verificar")">Requisitos</a>
+                    <a class="nav-link text-primary" href="@Url.Action("Reporte","Verificar")">Reporte</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-briefcase"></i>  <span class="text-secondary">Verificar Hoja De Vida/ Reporte</span>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-3">
+                <p class="form-label text-danger" id="idNombrec" style="font-size: 13px">NOMBRE DE LA PERSONA A VERIFICAR</p>
+            </div>
+            <div class="col-6">
+                <p class="form-label" id="idArea" for="validationCustom05" style="font-size:13px">UNION DE EMPLEADOS TRABAJADORES Y CONTRATISTAS DE LA SALUD - UTRASSALUD Gestion Humana Profecional del Talento Humano</p>
+            </div>
+            <div class="col-3">
+                <p class="form-label" id="idverific" for="validationCustom05" style="font-size:13px">Confirmado:</p>
+            </div>
+            @if (HttpContext.Current.Session["numDocumento"] == null || HttpContext.Current.Session["numDocumento"] == "0")
+            {
+
+            }
+            else
+            {
+                <div class="col-md-3">
+                    <form class="mb-2" action="@Url.Action("CrearReporte","Verificar")" method="get">
+                        <button id="btnpdf" type="submit" class="btn btn-outline-primary mx-2"><i class="fas fa-file-pdf mx-1"></i>Generar Pdf</button>
+                    </form>
+                </div>
+            }
+
+            @*<div class="col-md-2">
+            <button type="button" class="btn btn-success">Imprimir</button>
+        </div>*@
+            <div class="col-md-3">
+                <button type="button" class="btn btn-info" onclick="confirmarVerific()">Comfirmar Verificación</button>
+            </div>
+            <div class="col-md-3">
+                <p class="form-label" for="validationCustom05" style="font-size:13px"></p>
+            </div>
+            <form class="mb-3 mt-4" action="@Url.Action("exportarReporteEspesifico","Verificar")" method="get">
+                <button id="btnexportar" type="submit" class="btn btn-success"><i class="fas fa-file-excel mx-1"></i>Exportar</button>
+            </form>
+
+            <table id="tabla" class="table table-hover mt-4 " style="width:100%; font-size:12px">
+                <thead>
+                    <tr>
+                        <th>oid</th>
+                        <th>Item</th>
+                        <th>Cumple</th>
+                        <th>Observación</th>
+                        <th>Fecha Verificación</th>
+                        <th>Fecha Resumen</th>
+                        <th>N°</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="FormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="respuesta"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+
+        var tabladata;
+
+        var Url = '@Url.Action("ListarReporte", "Verificar")';
+
+        jQuery.ajax({
+            url: '@Url.Action("ListarFAcademica", "Verificar")',
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                $("#idNombrec").text(response.data.NombreCompleto)
+                $("#idverific").text("Confirmado: " + response.data.Verificado)
+
+                if (response.data.Verificado != 'Si') {
+                    $('#idNombrec').addClass('text-danger');
+                } else {
+                    $('#idNombrec').removeClass('text-danger');
+                    $('#idNombrec').addClass('text-primary');
+                }
+
+            }
+
+        })
+
+
+        jQuery.ajax({
+            url: '@Url.Action("ListarDatosLaborales", "Verificar")',
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                const dLaboral = response.data[0]
+                $("#idArea").text(dLaboral.NombreArea)
+
+
+            }
+
+        })
+
+        tabladata = $("#tabla").DataTable({
+            responsive: true,
+            ordering: false,
+            "ajax": {
+                url: Url,
+                type: "GET",
+                dataType: "json",
+            },
+            "columns": [
+                { "data": "oid" },
+                { "data": "Item" },
+                { "data": "Cumple" },
+                { "data": "Observacion" },
+                { "data": "FechaVerificacion" },
+                { "data": "FechaResumen" },
+                { "data": "Numero" },
+
+            ],
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.13.3/i18n/es-ES.json"
+            }
+
+        });
+
+        function confirmarVerific(){
+            jQuery.ajax({
+            url: '@Url.Action("ConfirmarVerificacion", "Verificar")',
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                $("#respuesta").text(response.mensaje)
+
+                if (response.resultado) {
+                    $('#respuesta').removeClass('text-danger');
+                    $('#respuesta').addClass('text-primary');
+                } else {
+                    $('#respuesta').removeClass('text-primary');
+                    $('#respuesta').addClass('text-danger');
+                }
+
+                $("#FormModal").modal("show");
+            },
+            error: function (error) {
+
+                $("#contenido").LoadingOverlay("hide")
+
+                $("#respuesta").text("Error Ajax")
+                $("#FormModal").modal("show");
+
+            }
+
+        })
+        }
+
+    </script>    
+
+}

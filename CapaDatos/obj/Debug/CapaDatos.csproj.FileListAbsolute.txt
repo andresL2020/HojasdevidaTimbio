@@ -1,0 +1,117 @@
+D:\Users\XIMENA DIAZ\Documents\Fup\FUP 10\PASANTIA\ADMINISTRADOR DE HOJAS DE VIDA\AdministradorHV\CapaDatos\bin\Debug\CapaDatos.dll
+D:\Users\XIMENA DIAZ\Documents\Fup\FUP 10\PASANTIA\ADMINISTRADOR DE HOJAS DE VIDA\AdministradorHV\CapaDatos\bin\Debug\CapaDatos.pdb
+D:\Users\XIMENA DIAZ\Documents\Fup\FUP 10\PASANTIA\ADMINISTRADOR DE HOJAS DE VIDA\AdministradorHV\CapaDatos\bin\Debug\CapaEntidad.dll
+D:\Users\XIMENA DIAZ\Documents\Fup\FUP 10\PASANTIA\ADMINISTRADOR DE HOJAS DE VIDA\AdministradorHV\CapaDatos\bin\Debug\CapaEntidad.pdb
+D:\Users\XIMENA DIAZ\Documents\Fup\FUP 10\PASANTIA\ADMINISTRADOR DE HOJAS DE VIDA\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.AssemblyReference.cache
+D:\Users\XIMENA DIAZ\Documents\Fup\FUP 10\PASANTIA\ADMINISTRADOR DE HOJAS DE VIDA\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
+D:\Users\XIMENA DIAZ\Documents\Fup\FUP 10\PASANTIA\ADMINISTRADOR DE HOJAS DE VIDA\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.CopyComplete
+D:\Users\XIMENA DIAZ\Documents\Fup\FUP 10\PASANTIA\ADMINISTRADOR DE HOJAS DE VIDA\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.dll
+D:\Users\XIMENA DIAZ\Documents\Fup\FUP 10\PASANTIA\ADMINISTRADOR DE HOJAS DE VIDA\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.pdb
+F:\PROGRAMACION\gitkraken\AdministradorHosp\CapaDatos\bin\Debug\CapaDatos.dll
+F:\PROGRAMACION\gitkraken\AdministradorHosp\CapaDatos\bin\Debug\CapaDatos.pdb
+F:\PROGRAMACION\gitkraken\AdministradorHosp\CapaDatos\bin\Debug\CapaEntidad.dll
+F:\PROGRAMACION\gitkraken\AdministradorHosp\CapaDatos\bin\Debug\CapaEntidad.pdb
+F:\PROGRAMACION\gitkraken\AdministradorHosp\CapaDatos\obj\Debug\CapaDatos.csproj.AssemblyReference.cache
+F:\PROGRAMACION\gitkraken\AdministradorHosp\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
+F:\PROGRAMACION\gitkraken\AdministradorHosp\CapaDatos\obj\Debug\CapaDatos.csproj.CopyComplete
+F:\PROGRAMACION\gitkraken\AdministradorHosp\CapaDatos\obj\Debug\CapaDatos.dll
+F:\PROGRAMACION\gitkraken\AdministradorHosp\CapaDatos\obj\Debug\CapaDatos.pdb
+C:\Users\PERSONAL\Downloads\Pasantia\AdministradorHV\CapaDatos\bin\Debug\CapaDatos.dll
+C:\Users\PERSONAL\Downloads\Pasantia\AdministradorHV\CapaDatos\bin\Debug\CapaDatos.pdb
+C:\Users\PERSONAL\Downloads\Pasantia\AdministradorHV\CapaDatos\bin\Debug\CapaEntidad.dll
+C:\Users\PERSONAL\Downloads\Pasantia\AdministradorHV\CapaDatos\bin\Debug\CapaEntidad.pdb
+C:\Users\PERSONAL\Downloads\Pasantia\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.AssemblyReference.cache
+C:\Users\PERSONAL\Downloads\Pasantia\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
+C:\Users\PERSONAL\Downloads\Pasantia\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.CopyComplete
+C:\Users\PERSONAL\Downloads\Pasantia\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.dll
+C:\Users\PERSONAL\Downloads\Pasantia\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.pdb
+C:\Users\Sebastian Gutierrez\Desktop\AdministradorHosp\CapaDatos\bin\Debug\CapaDatos.dll
+C:\Users\Sebastian Gutierrez\Desktop\AdministradorHosp\CapaDatos\bin\Debug\CapaDatos.pdb
+C:\Users\Sebastian Gutierrez\Desktop\AdministradorHosp\CapaDatos\bin\Debug\CapaEntidad.dll
+C:\Users\Sebastian Gutierrez\Desktop\AdministradorHosp\CapaDatos\bin\Debug\CapaEntidad.pdb
+C:\Users\Sebastian Gutierrez\Desktop\AdministradorHosp\CapaDatos\obj\Debug\CapaDatos.csproj.AssemblyReference.cache
+C:\Users\Sebastian Gutierrez\Desktop\AdministradorHosp\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
+C:\Users\Sebastian Gutierrez\Desktop\AdministradorHosp\CapaDatos\obj\Debug\CapaDatos.csproj.CopyComplete
+C:\Users\Sebastian Gutierrez\Desktop\AdministradorHosp\CapaDatos\obj\Debug\CapaDatos.dll
+C:\Users\Sebastian Gutierrez\Desktop\AdministradorHosp\CapaDatos\obj\Debug\CapaDatos.pdb
+C:\Users\Sebastian Gutierrez\Documents\AdministradorHosp\CapaDatos\bin\Debug\CapaDatos.dll
+C:\Users\Sebastian Gutierrez\Documents\AdministradorHosp\CapaDatos\bin\Debug\CapaDatos.pdb
+C:\Users\Sebastian Gutierrez\Documents\AdministradorHosp\CapaDatos\bin\Debug\CapaEntidad.dll
+C:\Users\Sebastian Gutierrez\Documents\AdministradorHosp\CapaDatos\bin\Debug\CapaEntidad.pdb
+C:\Users\Sebastian Gutierrez\Documents\AdministradorHosp\CapaDatos\obj\Debug\CapaDatos.csproj.AssemblyReference.cache
+C:\Users\Sebastian Gutierrez\Documents\AdministradorHosp\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
+C:\Users\Sebastian Gutierrez\Documents\AdministradorHosp\CapaDatos\obj\Debug\CapaDatos.csproj.CopyComplete
+C:\Users\Sebastian Gutierrez\Documents\AdministradorHosp\CapaDatos\obj\Debug\CapaDatos.dll
+C:\Users\Sebastian Gutierrez\Documents\AdministradorHosp\CapaDatos\obj\Debug\CapaDatos.pdb
+F:\proyecto seminario empresarial\proyecto avanzado\v7\Pasantia\AdministradorHV\CapaDatos\bin\Debug\CapaDatos.dll
+F:\proyecto seminario empresarial\proyecto avanzado\v7\Pasantia\AdministradorHV\CapaDatos\bin\Debug\CapaDatos.pdb
+F:\proyecto seminario empresarial\proyecto avanzado\v7\Pasantia\AdministradorHV\CapaDatos\bin\Debug\CapaEntidad.dll
+F:\proyecto seminario empresarial\proyecto avanzado\v7\Pasantia\AdministradorHV\CapaDatos\bin\Debug\CapaEntidad.pdb
+F:\proyecto seminario empresarial\proyecto avanzado\v7\Pasantia\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.AssemblyReference.cache
+F:\proyecto seminario empresarial\proyecto avanzado\v7\Pasantia\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
+F:\proyecto seminario empresarial\proyecto avanzado\v7\Pasantia\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.CopyComplete
+F:\proyecto seminario empresarial\proyecto avanzado\v7\Pasantia\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.dll
+F:\proyecto seminario empresarial\proyecto avanzado\v7\Pasantia\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.pdb
+F:\proyecto seminario empresarial\proyecto avanzado p2\AdministradorHV\CapaDatos\bin\Debug\CapaDatos.dll
+F:\proyecto seminario empresarial\proyecto avanzado p2\AdministradorHV\CapaDatos\bin\Debug\CapaDatos.pdb
+F:\proyecto seminario empresarial\proyecto avanzado p2\AdministradorHV\CapaDatos\bin\Debug\CapaEntidad.dll
+F:\proyecto seminario empresarial\proyecto avanzado p2\AdministradorHV\CapaDatos\bin\Debug\CapaEntidad.pdb
+F:\proyecto seminario empresarial\proyecto avanzado p2\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.AssemblyReference.cache
+F:\proyecto seminario empresarial\proyecto avanzado p2\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
+F:\proyecto seminario empresarial\proyecto avanzado p2\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.CopyComplete
+F:\proyecto seminario empresarial\proyecto avanzado p2\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.dll
+F:\proyecto seminario empresarial\proyecto avanzado p2\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.pdb
+C:\Users\PERSONAL\Desktop\Ultimo\AdministradorHV\CapaDatos\bin\Debug\CapaDatos.dll
+C:\Users\PERSONAL\Desktop\Ultimo\AdministradorHV\CapaDatos\bin\Debug\CapaDatos.pdb
+C:\Users\PERSONAL\Desktop\Ultimo\AdministradorHV\CapaDatos\bin\Debug\CapaEntidad.dll
+C:\Users\PERSONAL\Desktop\Ultimo\AdministradorHV\CapaDatos\bin\Debug\CapaEntidad.pdb
+C:\Users\PERSONAL\Desktop\Ultimo\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.AssemblyReference.cache
+C:\Users\PERSONAL\Desktop\Ultimo\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
+C:\Users\PERSONAL\Desktop\Ultimo\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.CopyComplete
+C:\Users\PERSONAL\Desktop\Ultimo\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.dll
+C:\Users\PERSONAL\Desktop\Ultimo\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.pdb
+C:\Users\USUARIO\Desktop\AdministradorHV\CapaDatos\bin\Debug\CapaDatos.dll
+C:\Users\USUARIO\Desktop\AdministradorHV\CapaDatos\bin\Debug\CapaDatos.pdb
+C:\Users\USUARIO\Desktop\AdministradorHV\CapaDatos\bin\Debug\CapaEntidad.dll
+C:\Users\USUARIO\Desktop\AdministradorHV\CapaDatos\bin\Debug\CapaEntidad.pdb
+C:\Users\USUARIO\Desktop\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.AssemblyReference.cache
+C:\Users\USUARIO\Desktop\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
+C:\Users\USUARIO\Desktop\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.CopyComplete
+C:\Users\USUARIO\Desktop\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.dll
+C:\Users\USUARIO\Desktop\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.pdb
+C:\Users\PERSONAL\Downloads\pasantia v3\AdministradorHV\CapaDatos\bin\Debug\CapaDatos.dll
+C:\Users\PERSONAL\Downloads\pasantia v3\AdministradorHV\CapaDatos\bin\Debug\CapaDatos.pdb
+C:\Users\PERSONAL\Downloads\pasantia v3\AdministradorHV\CapaDatos\bin\Debug\CapaEntidad.dll
+C:\Users\PERSONAL\Downloads\pasantia v3\AdministradorHV\CapaDatos\bin\Debug\CapaEntidad.pdb
+C:\Users\PERSONAL\Downloads\pasantia v3\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.AssemblyReference.cache
+C:\Users\PERSONAL\Downloads\pasantia v3\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
+C:\Users\PERSONAL\Downloads\pasantia v3\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.CopyComplete
+C:\Users\PERSONAL\Downloads\pasantia v3\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.dll
+C:\Users\PERSONAL\Downloads\pasantia v3\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.pdb
+D:\Nueva carpeta\pasantia v3\AdministradorHV\CapaDatos\bin\Debug\CapaDatos.dll
+D:\Nueva carpeta\pasantia v3\AdministradorHV\CapaDatos\bin\Debug\CapaDatos.pdb
+D:\Nueva carpeta\pasantia v3\AdministradorHV\CapaDatos\bin\Debug\CapaEntidad.dll
+D:\Nueva carpeta\pasantia v3\AdministradorHV\CapaDatos\bin\Debug\CapaEntidad.pdb
+D:\Nueva carpeta\pasantia v3\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.AssemblyReference.cache
+D:\Nueva carpeta\pasantia v3\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
+D:\Nueva carpeta\pasantia v3\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.CopyComplete
+D:\Nueva carpeta\pasantia v3\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.dll
+D:\Nueva carpeta\pasantia v3\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.pdb
+C:\Users\USUARIO\Desktop\pasantia v3\AdministradorHV\CapaDatos\bin\Debug\CapaDatos.dll
+C:\Users\USUARIO\Desktop\pasantia v3\AdministradorHV\CapaDatos\bin\Debug\CapaDatos.pdb
+C:\Users\USUARIO\Desktop\pasantia v3\AdministradorHV\CapaDatos\bin\Debug\CapaEntidad.dll
+C:\Users\USUARIO\Desktop\pasantia v3\AdministradorHV\CapaDatos\bin\Debug\CapaEntidad.pdb
+C:\Users\USUARIO\Desktop\pasantia v3\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.AssemblyReference.cache
+C:\Users\USUARIO\Desktop\pasantia v3\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
+C:\Users\USUARIO\Desktop\pasantia v3\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.csproj.CopyComplete
+C:\Users\USUARIO\Desktop\pasantia v3\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.dll
+C:\Users\USUARIO\Desktop\pasantia v3\AdministradorHV\CapaDatos\obj\Debug\CapaDatos.pdb
+C:\Users\PERSONAL\Downloads\pasantia v4\AdministradorHosp-feature10\CapaDatos\bin\Debug\CapaDatos.dll
+C:\Users\PERSONAL\Downloads\pasantia v4\AdministradorHosp-feature10\CapaDatos\bin\Debug\CapaDatos.pdb
+C:\Users\PERSONAL\Downloads\pasantia v4\AdministradorHosp-feature10\CapaDatos\bin\Debug\CapaEntidad.dll
+C:\Users\PERSONAL\Downloads\pasantia v4\AdministradorHosp-feature10\CapaDatos\bin\Debug\CapaEntidad.pdb
+C:\Users\PERSONAL\Downloads\pasantia v4\AdministradorHosp-feature10\CapaDatos\obj\Debug\CapaDatos.csproj.AssemblyReference.cache
+C:\Users\PERSONAL\Downloads\pasantia v4\AdministradorHosp-feature10\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
+C:\Users\PERSONAL\Downloads\pasantia v4\AdministradorHosp-feature10\CapaDatos\obj\Debug\CapaDatos.csproj.CopyComplete
+C:\Users\PERSONAL\Downloads\pasantia v4\AdministradorHosp-feature10\CapaDatos\obj\Debug\CapaDatos.dll
+C:\Users\PERSONAL\Downloads\pasantia v4\AdministradorHosp-feature10\CapaDatos\obj\Debug\CapaDatos.pdb

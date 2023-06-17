@@ -1,0 +1,281 @@
+﻿
+@{
+    ViewBag.Title = "Procesos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ol class="breadcrumb mb-4 mt-4">
+    <li class="breadcrumb-item">Administrador gestion humana HV</li>
+    <li class="breadcrumb-item active">Procesos</li>
+</ol>
+
+
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-briefcase"></i> Procesos
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-4">
+                <button type="button" class="btn btn-primary" onclick="abrirModal()">Crear Proceso</button>
+            </div>
+            <div class="col-6 border border-2 rounded-1 p-2">
+                <table id="tabla" class="table table-hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Proceso</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="FormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="exampleModalLabel">Proceso</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input id="txtid" type="hidden" value="0" />
+                <label for="txtproceso" class="form-label">Proceso</label>
+                <input type="text" class="form-control" id="txtproceso" aria-label="Username" aria-describedby="addon-wrapping" autocomplete="off">
+                <div class="invalid-feedback">
+                    Por favor, ingrese solo texto.
+                </div>
+                <div id="mensajeError" class="alert alert-danger mt-2" role="alert">
+                    A simple danger alert—check it out!
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="Guardar()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalresult" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Mensaje</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+
+                Operación exitosa
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+
+        var tabladata;
+        var filaSeleccionada;
+
+        const inputtxtproceso = document.getElementById("txtproceso");
+
+
+        const validateInput = function (input) {
+            const value = input.value.trim();
+            const hasNumbers = /\d/.test(value);
+
+            if (hasNumbers) {
+                input.setCustomValidity("No se permiten números en este campo");
+                input.classList.add("is-invalid");
+            } else {
+                input.setCustomValidity("");
+                input.classList.remove("is-invalid");
+            }
+        };
+
+        inputtxtproceso.addEventListener("input", function () {
+            validateInput(inputtxtproceso);
+        });
+
+        jQuery.ajax({
+            url: '@Url.Action("ListarProcesos", "Home")',
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                console.log(data)
+            }
+
+        })
+
+        tabladata = $("#tabla").DataTable({
+            responsive: true,
+            ordering: false,
+            "ajax": {
+                url: '@Url.Action("ListarProcesos", "Home")',
+                type: "GET",
+                dataType: "json",
+            },
+            "columns": [
+                { "data": "IdProceso" },
+                { "data": "NombreProceso" },
+                {
+                    "defaultContent": '<button type="button" onclick="abrirModal()" class="btn btn-primary btn-sm btn-editar"><i class="fas fa-pen"></i></button>' +
+                        '<button type="button" class="btn btn-danger btn-sm ms-2 btn-eliminar"><i class="fas fa-trash"></i></button>',
+                    "orderable": false,
+                    "searchable": false,
+                    "width": "90px"
+                }
+            ],
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.13.3/i18n/es-ES.json"
+            }
+
+        });
+
+        //-----------------------------abrir modal, editar
+        function abrirModal(json) {
+            $("#txtid").val(0)
+            $("#txtproceso").val("")
+
+            $("#mensajeError").hide()
+
+
+
+            if (json != null) {
+                $("#txtid").val(json.IdProceso)
+                $("#txtproceso").val(json.NombreProceso)
+            }
+
+
+            $("#FormModal").modal("show")
+        }
+
+
+        $("#tabla tbody").on("click", '.btn-editar', function () {
+            filaSeleccionada = $(this).closest("tr")
+
+            //data es un json porque data() retorna un json
+            var data = tabladata.row(filaSeleccionada).data()
+            /*console.log(data)*/
+
+            abrirModal(data)
+
+        })
+
+
+        //-----------------------------eliminar
+
+        $("#tabla tbody").on("click", '.btn-eliminar', function () {
+            var procesoSeleccionado = $(this).closest("tr")
+
+            //data es un json porque data() retorna un json
+            var data = tabladata.row(procesoSeleccionado).data()
+            swal({
+                title: "Estas Seguro?",
+                text: "¿Desea eliminar este proceso?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-primary",
+                confirmButtonText: "Si",
+                cancelButtonText: "No",
+                closeOnConfirm: true
+            },
+            function () {
+                jQuery.ajax({
+                    url: '@Url.Action("EliminarProceso", "Home")',
+                    type: "POST",
+                    data: JSON.stringify({ id: data.IdProceso}),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+
+                        if (data.resultado) {
+                            tabladata.row(procesoSeleccionado).remove().draw()
+                        } else {
+                            swal("No se pudo eliminar", data.mensaje,"error")
+                        }
+
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                })
+            })
+
+        })
+
+        //-----------------------------Guardar
+        function Guardar() {
+            var Proceso = {
+                IdProceso: $("#txtid").val(),
+                NombreProceso: $("#txtproceso").val()
+            }
+
+            jQuery.ajax({
+                url: '@Url.Action("GuardarProceso", "Home")',
+                type: "POST",
+                data: JSON.stringify({ objeto: Proceso }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+
+                    $(".modal-body").LoadingOverlay("hide")
+
+                    //Usuario nuevo
+                    if (Proceso.IdProceso == 0) {
+
+                        if (data.resultado != 0) {
+                            Proceso.IdProceso = data.resultado
+                            tabladata.row.add(Proceso).draw(false)
+                            $("#FormModal").modal("hide")
+                            $("#modalresult").modal("show")
+                        } else {
+                            $("#mensajeError").text(data.mensaje)
+                            $("#mensajeError").show()
+                            
+                        }
+
+                        //Usuario editar
+                    }
+                    else {
+
+                        if (data.resultado) {
+                            tabladata.row(filaSeleccionada).data(Proceso).draw(false)
+                            filaSeleccionada = null;
+                            $("#FormModal").modal("hide");
+                            $("#modalresult").modal("show")
+                        } else {
+                            $("#mensajeError").text(data.mensaje)
+                            $("#mensajeError").show()
+                        }
+                    }
+                },
+                error: function (error) {
+                    $(".modal-body").LoadingOverlay("hide")
+                    $("#mensajeError").text("Error Ajax")
+                    $("#mensajeError").show()
+                },
+                beforeSend: function () {
+                    $(".modal-body").LoadingOverlay("show", {
+                        imageResizeFactor: 2,
+                        text: "Cargando...",
+                        size:14
+                    })
+                }
+            });
+
+        }
+        //----------------------fin
+
+    </script>
+}

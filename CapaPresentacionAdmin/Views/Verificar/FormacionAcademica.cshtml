@@ -1,0 +1,330 @@
+﻿
+@{
+    ViewBag.Title = "FormacionAcademica";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="mb-3 mt-2">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow p-3 mb-4 bg-body rounded border border-1" style="width:100%">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="@Url.Action("Buscar","Verificar")">Buscar</a>
+                    <a class="nav-link" href="@Url.Action("DatosPersonales","Verificar")">Datos Personales</a>
+                    <a class="nav-link text-primary" href="@Url.Action("FormacionAcademica","Verificar")">Formacion Academica</a>
+                    <a class="nav-link" href="@Url.Action("Capacitaciones","Verificar")">Cursos</a>
+                    <a class="nav-link" href="@Url.Action("Idiomas","Verificar")">Idiomas</a>
+                    <a class="nav-link" href="@Url.Action("ExperienciaLaboral","Verificar")">ExLaboral</a>
+                    <a class="nav-link" href="@Url.Action("DatosLaborales","Verificar")">Datos Laborales</a>
+                    <a class="nav-link" href="@Url.Action("Requisitos","Verificar")">Requisitos</a>
+                    <a class="nav-link" href="@Url.Action("Reporte","Verificar")">Reporte</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-briefcase"></i>  <span class="text-secondary">Verificar Hoja De Vida/ Formacion Academica</span>
+    </div>
+    <div class="card-body">
+        <div class="row" id="contenido">
+            <div class="col-3">
+                <p class="form-label text-danger" id="idNombrec" style="font-size: 13px">NOMBRE DE LA PERSONA A VERIFICAR</p>
+            </div>
+            <div class="col-6">
+                <p class="form-label" id="idArea" for="validationCustom05" style="font-size:13px">UNION DE EMPLEADOS TRABAJADORES Y CONTRATISTAS DE LA SALUD - UTRASSALUD Gestion Humana Profecional del Talento Humano</p>
+            </div>
+            <div class="col-3">
+                <p class="form-label" id="idverific" for="validationCustom05" style="font-size:13px">Confirmado:</p>
+            </div>
+            @*<input type="text" class="form-control" value="@Session["numDocumento"]">*@
+            <div class="col-3">
+                <label class="form-label" for="validationCustom05"><b>Cargo Aspira:</b></label>
+            </div>
+            <div class="col-3">
+                <label class="form-label" for="validationCustom05" style="font-size:12px">Profecional</label>
+            </div>
+            <table id="tabla" class="table table-hover" style="width: 100%; font-size: 12.5px">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Educacion Básica</th>
+                        <th>Año Grado</th>
+                        <th>Título</th>
+                        <th>Institución</th>
+                        <th>Mes Graduación</th>
+                        <th>Año Graduación</th>
+                        <th>Ver Adjunto</th>
+                        <th>Cumple</th>
+                        <th>......</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div class="col-3">
+                <label class="form-label mt-5" for="validationCustom05"><b>Educación Superior</b></label>
+            </div>
+            <table id="tabla2" class="table table-hover " style="width: 100%; font-size: 12.5px">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Modalidad</th>
+                        <th>N° Semestre</th>
+                        <th>Graduado</th>
+                        <th>Titulo</th>
+                        <th>Institución</th>
+                        <th>Mes Graduación</th>
+                        <th>Año Graduación</th>
+                        <th>Ver Adjunto</th>
+                        <th>Cumple</th>
+                        <th>......</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="FormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="respuesta"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+
+                jQuery.ajax({
+            url: '@Url.Action("ListarDatosLaborales", "Verificar")',
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                const dLaboral = response.data[0]
+                $("#idArea").text(dLaboral.NombreArea)
+
+
+            }
+
+        })
+
+        jQuery.ajax({
+            url: '@Url.Action("ListarFAcademica", "Verificar")',
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                $("<tr>").append(
+                    $("<td>").text(response.data.IdFormacionAcademica),
+                    $("<td>").text(response.data.EducacionBasica),
+                    $("<td>").text(response.data.AñoGrado),
+                    $("<td>").text(response.data.TituloObtenido),
+                    $("<td>").text(response.data.InstituEducativa),
+                    $("<td>").text(response.data.MesGrado),
+                    $("<td>").text(response.data.AñoGrado),
+                    $("<td>").append(
+                        $("<form>").attr({ "action": '@Url.Action("verPdfFormacionAcademica", "Verificar")', "method": "post", "target":"_blank"}).append(
+                            $("<input>").attr({ "type": "hidden", "name": "IdFAcademica", "value": response.data.IdFormacionAcademica }),
+                            $("<input>").attr({ "type": "hidden", "name": "nombre", "value":"ActaColegio" }),
+                            $("<button>").addClass("btn btn-outline-success btn-sm mb-2 btn-archivo").attr({ "type": "submit" }).text("ActaColegio"),
+                        ),
+                        $("<form>").attr({ "action": '@Url.Action("verPdfFormacionAcademica", "Verificar")', "method": "post", "target":"_blank" }).append(
+                            $("<input>").attr({ "type": "hidden", "name": "IdFAcademica", "value": response.data.IdFormacionAcademica }),
+                            $("<input>").attr({ "type": "hidden", "name": "nombre", "value":"DiplomaColegio" }),
+                            $("<button>").addClass("btn btn-outline-success btn-sm mb-2 btn-archivo").attr({ "type": "submit" }).text("DiplomaColegio"),
+                        ),
+                    ),
+
+                    $("<td>").append(
+                        $("<select>").addClass("form-select").attr({ "id": "cbocumplebasica", "aria-label": "Default select example" }).append(
+                            $("<option>").text("Sin Seleccionar"),
+                            $("<option>").attr({ "value": "Na"}).text("Na"),
+                            $("<option>").attr({ "value": "Si"}).text("Si"),
+                            $("<option>").attr({ "value": "No"}).text("No"),
+                        ),
+                        $("<div>").addClass("form-floating").append(
+                            $("<textarea>").addClass("form-control mt-2 p-1").attr({ "id": "obBasica" })
+                        ),
+                    ),
+                    $("<td>").append(
+                        $("<button>").addClass("btn btn-primary").attr({ "onclick": "Guardar(1)", "type": "button", "id": "btnBasica", "value":response.data.IdFormacionAcademica}).text("Guardar"),
+                    ),
+                ).appendTo("#tabla")
+
+                $("<tr>").append(
+                    $("<td>").text(response.data.IdFormacionAcademica),
+                    $("<td>").text(response.data.ModalidadAcademica),
+                    $("<td>").text(response.data.SemestresAprobados),
+                    $("<td>").text(response.data.Graduado),
+                    $("<td>").text(response.data.NombreTitulo),
+                    $("<td>").text(response.data.NombreInstitucion),
+                    $("<td>").text(response.data.MesTermino),
+                    $("<td>").text(response.data.Año),
+                    $("<td>").append(
+                        $("<form>").attr({ "action": '@Url.Action("verPdfFormacionAcademica", "Verificar")', "method": "post", "target":"_blank"}).append(
+                            $("<input>").attr({ "type": "hidden", "name": "IdFAcademica", "value": response.data.IdFormacionAcademica }),
+                             $("<input>").attr({ "type": "hidden", "name": "nombre", "value":"ActaUniversitaria" }),
+                             $("<button>").addClass("btn btn-outline-success btn-sm mb-2 btn-archivo").attr({ "type": "submit" }).text("ActaUniversitaria"),
+                        ),
+                        $("<form>").attr({ "action": '@Url.Action("verPdfFormacionAcademica", "Verificar")', "method": "post", "target":"_blank"}).append(
+                            $("<input>").attr({ "type": "hidden", "name": "IdFAcademica", "value": response.data.IdFormacionAcademica }),
+                            $("<input>").attr({ "type": "hidden", "name": "nombre", "value":"DiplomaUniversitario" }),
+                            $("<button>").addClass("btn btn-outline-success btn-sm mb-2 btn-archivo").attr({ "type": "submit" }).text("DiplomaUniversitario"),
+                        ),
+                    ),
+                    $("<td>").append(
+                        $("<select>").addClass("form-select").attr({ "id": "cbocumplesuperior", "aria-label": "Default select example" }).append(
+                            $("<option>").text("Sin Seleccionar"),
+                            $("<option>").attr({ "value": "Na" }).text("Na"),
+                            $("<option>").attr({ "value": "Si" }).text("Si"),
+                            $("<option>").attr({ "value": "No" }).text("No"),
+                        ),
+                        $("<div>").addClass("form-floating").append(
+                            $("<textarea>").addClass("form-control mt-2 p-1").attr({"id": "obSuperior" })
+                        ),
+                    ),
+                    $("<td>").append(
+                        $("<button>").addClass("btn btn-primary").attr({ "onclick": "Guardar(2)", "type": "button", "id": "btnSuperior", "value": response.data.IdFormacionAcademica }).text("Guardar"),
+                    ),
+                ).appendTo("#tabla2")
+
+
+                $("#cbocumplebasica").val(response.data.CumpleBasica)
+                $("#cbocumplesuperior").val(response.data.CumpleSuperior)
+                $("#obBasica").val(response.data.ObservacionBasica)
+                $("#obSuperior").val(response.data.ObservacionSuperior)
+                $("#idNombrec").text(response.data.NombreCompleto)
+                $("#idverific").text("Confirmado: " + response.data.Verificado)
+
+                if (response.data.Verificado != 'Si') {
+                    $('#idNombrec').addClass('text-danger');
+                } else {
+                    $('#idNombrec').removeClass('text-danger');
+                    $('#idNombrec').addClass('text-primary');
+                }
+
+                if (response.data.CumpleBasica != 'Sin Seleccionar' && response.data.CumpleSuperior != 'Sin Seleccionar') {
+                    $("#btnBasica").text("Editar")
+                    $("#btnSuperior").text("Editar")
+                }
+
+                $("#contenido").LoadingOverlay("hide")
+            },
+            error: function (error) {
+
+                $("#contenido").LoadingOverlay("hide")
+
+                $("#respuesta").text("Error Ajax")
+                $("#FormModal").modal("show");
+
+            },
+            beforeSend: function () {
+                $("#contenido").LoadingOverlay("show", {
+                    imageResizeFactor: 2,
+                    text: "Cargando...",
+                    size: 14
+                })
+
+            }
+
+        })
+
+
+        function abrirModal() {
+            $("#FormModal").modal("show")
+        }
+
+        //-----------------------------Guardar
+        function Guardar(numero) {
+
+            var IdFAcademica = $("#btnBasica").val()
+
+            if (numero == "1") {
+                var Cumple = $("#cbocumplebasica").val()
+                var Observacion = $("#obBasica").val()
+            } else if (numero == "2") {
+                var Cumple = $("#cbocumplesuperior").val()
+                var Observacion = $("#obSuperior").val()
+            }
+
+            jQuery.ajax({
+                url: '@Url.Action("EditarFormacioAcademica", "Verificar")',
+                type: "POST",
+                data: JSON.stringify({ IdFAcademica: IdFAcademica, Numero: numero, Cumple: Cumple, Observacion: Observacion  }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+
+                    if (numero == "1") {
+                        $("#tabla").LoadingOverlay("hide")
+                    } else if (numero == "2") {
+                        $("#tabla2").LoadingOverlay("hide")
+                    }
+
+                    if (data.resultado) {
+                        $("#FormModal").modal("show");
+                        $("#respuesta").text("Operacion Exitosa")
+                        $('#respuesta').removeClass('text-danger');
+                        $('#respuesta').addClass('text-primary');
+                    } else {
+                        $("#FormModal").modal("show");
+                        $("#respuesta").text(data.mensaje)
+                        $('#respuesta').removeClass('text-primary');
+                        $('#respuesta').addClass('text-danger');
+                    }
+
+
+                },
+                error: function (error) {
+                    if (numero == "1") {
+                        $("#tabla").LoadingOverlay("hide")
+                    } else if (numero == "2") {
+                        $("#tabla2").LoadingOverlay("hide")
+                    }
+                    $("#FormModal").modal("show");
+                    $("#respuesta").text("Error Ajax")
+
+
+                },
+                beforeSend: function () {
+                    if (numero == "1") {
+                        $("#tabla").LoadingOverlay("show", {
+                            imageResizeFactor: 2,
+                            text: "Cargando...",
+                            size: 14
+                        })
+                    } else if (numero == "2") {
+                        $("#tabla2").LoadingOverlay("show", {
+                            imageResizeFactor: 2,
+                            text: "Cargando...",
+                            size: 14
+                        })
+                    }
+                }
+            });
+        }
+
+    </script>
+
+}

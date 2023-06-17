@@ -1,0 +1,481 @@
+﻿
+@{
+    ViewBag.Title = "Exp_Laboralview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="hola">
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <i class="fas fa-book"></i> Experiencia Laboral
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <br>
+                <div class="hola1">
+                    <button type="button" class="btn btn-primary" onclick="abrirmodal(null)">Añadir Experiencia Laboral </button>
+                </div>
+                <div>
+                    <div class="col-md-5 form-check-inline">
+                        <p class="form-label text-primary" id="idNombrec" style="font-size: 13px">NOMBRE DE LA PERSONA A VERIFICAR</p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <table id="tabla3" class="display cell-border" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Empresa</th>
+                            <th>Dependencia</th>
+                            <th>Cargo</th>
+                            <th>Fecha Ingreso</th>
+                            <th>Fecha Egreso</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="FormModalExp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header text-light" style="background: #000000">
+                    <h5 class="modal-title" id="exampleModalLabel">Formulario Experiencia laboral</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+
+                    <div style="width: 85%; margin: 0 auto;">
+                        <section>
+
+                            <form class="row g-3 needs-validation" novalidate id="FormExpLaboral">
+                                <input type="text" id="txtIdExp" value="0" style="display: none;" />
+
+                               
+
+                                <div class="col-md-5 form-check-inline">
+                                    <label for="txtEntidad" class="form-label">Entidad o Empresa</label>
+                                    <input type="text" class="form-control" id="txtEntidad" required autocomplete="off">
+                                    <div class="invalid-feedback">
+                                        Por favor, ingrese solo texto.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 form-check-inline d-inline-block">
+                                    <label for="txtLaboro" class="form-label">Pais laboró</label>
+                                    <input type="text" class="form-control" id="txtLaboro" required autocomplete="off">
+                                    <div class="invalid-feedback">
+                                        Por favor, ingrese solo texto.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 form-check-inline d-inline-block">
+                                    <label for="txtdepartamento" class="form-label">Departamento</label>
+                                    <input type="text" class="form-control" id="txtdepartamento" required autocomplete="off">
+                                    <div class="invalid-feedback">
+                                        Por favor, ingrese solo texto.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 form-check-inline d-inline-block">
+                                    <label for="txtciudad" class="form-label">Ciudad</label>
+                                    <input type="text" class="form-control" id="txtciudad" required autocomplete="off">
+                                    <div class="invalid-feedback">
+                                        Por favor, ingrese solo texto.
+                                    </div>
+                                </div>
+                                @*______________*@
+                                <div class="col-md-3 form-check-inline">
+                                    <label for="txtdireccion" class="form-label">Dirección</label>
+                                    <input type="text" class="form-control" id="txtdireccion" required autocomplete="off">
+                                </div>
+                                <div class="col-md-2 form-check-inline">
+                                    <label for="txttelefono" class="form-label">Telefonos</label>
+                                    <input type="text" class="form-control" id="txttelefono" required autocomplete="off">
+                                    <div id="txttelefono_error" style="color: red;"></div>
+                                </div>
+                                <div class="col-md-4 form-check-inline">
+                                    <label for="txtcorreo" class="form-label">Correo Electronico</label>
+                                    <input type="text" class="form-control" id="txtcorreo" required autocomplete="off">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="txtsector" class="form-label">Sector Empresa</label>
+                                    <select class="form-control" name="txtLoEscribe" id="txtsector" required autocomplete="off">
+                                        <option value="" required>Seleccione.</option>
+                                        <option value="Publica" required>Publica</option>
+                                        <option value="Privada" required>Privada</option>
+                                    </select>
+                                </div>
+                                @*______________*@
+
+                                <div class="col-md-3 form-check-inline">
+                                    <label for="txtcargo" class="form-label">Cargo o contrato actual</label>
+                                    <input type="text" class="form-control" id="txtcargo" required autocomplete="off">
+                                    <div class="invalid-feedback">
+                                        Por favor, ingrese solo texto.
+                                    </div>
+                                </div>
+                                <div class="col-md-3 form-check-inline">
+                                    <label for="txtdependencia" class="form-label">Dependencia</label>
+                                    <input type="text" class="form-control" id="txtdependencia" required autocomplete="off">
+                                    <div class="invalid-feedback">
+                                        Por favor, ingrese solo texto.
+                                    </div>
+                                </div>
+                                <div class="col-md-2 form-check-inline">
+                                    <label for="txtfechain" class="form-label">Fecha Ingreso</label>
+                                    <input type="text" class="form-control" id="txtfechain" placeholder="dd-mm-yy" required autocomplete="off">
+                                </div>
+                                <div class="col-md-2 form-check-inline">
+                                    <label for="txtfechasal" class="form-label">Fecha salida</label>
+                                    <input type="text" class="form-control" id="txtfechasal" placeholder="dd-mm-yy" required autocomplete="off">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="formFile" class="form-label">Adjuntar Soporte</label>
+                                    <input class="form-control" type="file" id="formFile">
+                                </div>
+
+                            </form>
+
+                        </section>
+
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <div id="mensajEerror" class="alert alert-danger" role="alert">
+                                    A simple danger alert—check it out!
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary" onclick="Guardar()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalresult" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Mensaje</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+
+                Guardado Correctamente
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+        $("#txtfechain").datepicker({ dateFormat: 'yy-mm-dd' }).datepicker('setDate', new Date())
+        $("#txtfechasal").datepicker({ dateFormat: 'yy-mm-dd' }).datepicker('setDate', new Date())
+
+        var tabladata;
+        var filaSeleccionada;
+        var prueba = 0;
+
+         jQuery.ajax({
+                url: '@Url.Action("ListarRequisitos", "Sindicato")',
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    console.log(response)
+                    $("#idNombrec").text(response.data.NombreCompleto)
+
+                }
+
+            })
+
+
+        const inputtxttelefono = document.getElementById("txttelefono");
+        const txttelefonoError = document.getElementById("txttelefono_error");
+
+        const validateNumberInput = function (input, errorElement) {
+            const value = input.value.trim();
+            const regex = /^\d+$/; // Expresión regular para solo números
+
+            if (!regex.test(value)) {
+                errorElement.textContent = "Solo se permiten números";
+                input.classList.add("is-invalid");
+            } else {
+                errorElement.textContent = "";
+                input.classList.remove("is-invalid");
+            }
+        };
+        inputtxttelefono.addEventListener("input", function () {
+            validateNumberInput(inputtxttelefono, txttelefonoError);
+        });
+
+        // validando que solo se digite texto
+        const inputtxtEntidad = document.getElementById("txtEntidad");
+        const inputtxtLaboro = document.getElementById("txtLaboro");
+        const inputtxtdepartamento = document.getElementById("txtdepartamento");
+        const inputtxtciudad = document.getElementById("txtciudad");
+        const inputtxtcargo = document.getElementById("txtcargo");
+        const inputtxtdependencia = document.getElementById("txtdependencia");
+        const validateInput = function (input) {
+            const value = input.value.trim();
+            const hasNumbers = /\d/.test(value);
+
+            if (hasNumbers) {
+                input.setCustomValidity("No se permiten números en este campo");
+                input.classList.add("is-invalid");
+            } else {
+                input.setCustomValidity("");
+                input.classList.remove("is-invalid");
+            }
+        };
+
+        inputtxtEntidad.addEventListener("input", function () {
+            validateInput(inputtxtEntidad);
+        });
+        inputtxtLaboro.addEventListener("input", function () {
+            validateInput(inputtxtLaboro);
+        });
+        inputtxtdepartamento.addEventListener("input", function () {
+            validateInput(inputtxtdepartamento);
+        });
+        inputtxtciudad.addEventListener("input", function () {
+            validateInput(inputtxtciudad);
+        });
+        inputtxtcargo.addEventListener("input", function () {
+            validateInput(inputtxtcargo);
+        });
+        inputtxtdependencia.addEventListener("input", function () {
+            validateInput(inputtxtdependencia);
+        });
+
+
+        tabladata = $("#tabla3").DataTable({
+            responsive: true,
+            ordering: false,
+            "ajax": {
+                url: '@Url.Action("ListaExp_Laboral", "Sindicato")',
+                type: "GET",
+                dataType: "json",
+            },
+            "columns": [
+                { "data": "IdExperienciaLaboral" },
+                { "data": "EmpresaEntidad" },
+                { "data": "Dependencia" },
+                { "data": "CargoContratoActual" },
+                { "data": "FechaIngreso" },
+                { "data": "FechaEgreso" },
+
+                {
+                    "defaultContent": '<button type="button" class="btn btn-primary btn-sm btn-editarExplaboral"><i class="fas fa-pen"></i></button>' +
+                        '<button type="button" class="btn btn-danger btn-sm ms-2 btn-eliminarExperiencia"><i class="fas fa-trash"></i></button>',
+                    "orderable": false,
+                    "searchable": false,
+                    "width":"90px"
+                }
+            ],
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.13.3/i18n/es-ES.json"
+        }
+
+        });
+
+        function abrirmodal(json) {
+            document.getElementById("FormExpLaboral").reset();
+            $("#txtIdExp").val(0);
+            $("#mensajEerror").hide();
+
+
+            if (json != null) {
+
+                $("#txtIdExp").val(json.IdExperienciaLaboral);
+                $("#txtEntidad").val(json.EmpresaEntidad);
+                $("#txtLaboro").val(json.Pais);
+                $("#txtdepartamento").val(json.Departamento);
+                $("#txtciudad").val(json.Ciudad);
+                $("#txtdireccion").val(json.Direccion);
+                $("#txttelefono").val(json.Telefono);
+                $("#txtcorreo").val(json.CorreoElectronico);
+                $("#txtsector").val(json.SectorEmpresa == "Publica" ? "Publica" : "Privada");
+                $("#txtcargo").val(json.CargoContratoActual);
+                $("#txtdependencia").val(json.Dependencia);
+                $("#txtfechain").val(json.FechaIngreso);
+                $("#txtfechasal").val(json.FechaEgreso);
+
+            }
+
+
+            $("#FormModalExp").modal("show");
+        }
+
+        //Editar
+        $("#tabla3 tbody").on("click", '.btn-editarExplaboral', function () {
+
+            var filaSeleccionada = $(this).closest("tr");
+            var data = tabladata.row(filaSeleccionada).data();
+
+            abrirmodal(data)
+
+        })
+
+         // eliminar Capacitacion
+        $("#tabla3 tbody").on("click", '.btn-eliminarExperiencia', function () {
+
+            var usuarioseleccionado = $(this).closest("tr");
+            var data = tabladata.row(usuarioseleccionado).data();
+
+            swal({
+                title: "¿Esta seguro?",
+                text: "Desea eliminar la experiencia laboral?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-primary",
+                confirmButtonText: "Si!",
+                cancelButtonText: "No, cancelar",
+                closeOnConfirm: true
+
+            },
+                function () {
+                    jQuery.ajax({
+                        url: '@Url.Action("EliminarExlaboral", "Sindicato")',
+                        type: "POST",
+                        data: JSON.stringify({ id: data.IdExperienciaLaboral }),
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+
+                            if (data.resultado) {
+                                tabladata.row(usuarioseleccionado).remove().draw();
+
+                            } else {
+                                swal("Error al eliminar", data.mensaje, "error")
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        },
+
+                    });
+
+                });
+        })
+
+        function Guardar() {
+
+            var Experienciag = {
+
+                IdExperienciaLaboral: $("#txtIdExp").val(),
+                EmpresaEntidad: $("#txtEntidad").val(),
+                Pais: $("#txtLaboro").val(),
+                Departamento: $("#txtdepartamento").val(),
+                Ciudad: $("#txtciudad").val(),
+                Direccion: $("#txtdireccion").val(),
+                Telefono: $("#txttelefono").val(),
+                CorreoElectronico: $("#txtcorreo").val(),
+                SectorEmpresa: $("#txtsector").val(),
+                CargoContratoActual: $("#txtcargo").val(),
+                Dependencia: $("#txtdependencia").val(),
+                FechaIngreso: $("#txtfechain").val(),
+                FechaEgreso: $("#txtfechasal").val()
+
+            }
+
+            var formData = new FormData();
+            formData.append("IdExperienciaLaboral", $("#txtIdExp").val());
+            formData.append("EmpresaEntidad", $("#txtEntidad").val());
+            formData.append("Pais", $("#txtLaboro").val());
+            formData.append("Departamento", $("#txtdepartamento").val());
+            formData.append("Ciudad", $("#txtciudad").val());
+            formData.append("Direccion", $("#txtdireccion").val());
+            formData.append("Telefono", $("#txttelefono").val());
+            formData.append("CorreoElectronico", $("#txtcorreo").val());
+            formData.append("SectorEmpresa", $("#txtsector").val());
+            formData.append("CargoContratoActual", $("#txtcargo").val());
+            formData.append("Dependencia", $("#txtdependencia").val());
+            formData.append("FechaIngreso", $("#txtfechain").val());
+            formData.append("FechaEgreso", $("#txtfechasal").val());
+            formData.append("AdjuntarSoporteNombre", $("#formFile")[0].files[0]);
+
+            if ($("#formFile")[0].files[0] == undefined) {
+
+                $("#mensajEerror").text("El  campos para adjuntar pdf no puede ser vacio")
+                $("#mensajEerror").show()
+
+
+            } else {
+
+
+                jQuery.ajax({
+                    url: '@Url.Action("GuardarExp", "Sindicato")',
+                    type: "POST",
+                    data: formData,
+                    cache: false,
+                    processData: false,
+                    cache: false,
+                    contentType: false,
+                    success: function (data) {
+                        console.info(data);
+                        // este es el que imprimi la data
+                        console.log(data)
+
+                        //Usuario Nuevo
+                        if (Experienciag.IdExperienciaLaboral == 0) {
+
+                            if (data.resultado != 0) {
+
+                                Experienciag.IdExperienciaLaboral = data.resultado;
+                                tabladata.row.add(Experienciag).draw(false);
+                                $("#FormModalExp").modal("hide");
+                            } else {
+
+
+                                $("#mensajEerror").text(data.mensaje)
+                                $("#mensajEerror").show()
+                                $("#modalresult").modal("show");
+                            }
+
+                            //Usuario Editar
+                        }
+                        else {
+
+                            if (data.resultado) {
+
+                                tabladata.row(filaSeleccionada).data(Experienciag).draw(false);
+                                filaSeleccionada = null;
+                                $("#FormModalExp").modal("hide");
+                                $("#modalresult").modal("show");
+
+                            } else {
+                                $("#mensajEerror").text(data.mensaje)
+                                $("#mensajEerror").show()
+                            }
+
+
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                });
+            }
+         }
+
+    </script>
+}
+

@@ -1,0 +1,69 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Reestablecer</title>
+    <link href="~/Content/Login.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="login">
+        <div class="container-fluid border shadow-sm p-3 mb-5 bg-body rounded">
+            <div class="row">
+                <div class="col-sm-6 text-black">
+                    <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+                        <form style="width: 23rem;" action="@Url.Action("Reestablecer","Acceso")" method="post">
+                            <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Recuperación de contraseña</h3>
+
+                            <div class="form-outline mb-4">
+                                <div class=" small" mb-3 text-muted>Ingrese su dirección de correo electronico y le enviaremos su nueva contraseña</div>
+
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="email" id="form2Example18" name="correo" class="form-control form-control-lg" autocomplete="of" />
+                                <label class="form-label" for="form2Example18">Correo Electronico</label>
+                            </div>
+
+                            @{
+                                if (ViewBag.Error != null)
+                                {
+                                    <div class="form-outline mb-4">
+                                        <div class="alert alert-danger" role="alert">
+                                            @ViewBag.Error
+                                        </div>
+                                    </div>
+
+                                }
+                            }
+
+                            <div class="pt-1 mb-4">
+
+                                <button class="btn btn-info btn-lg btn-block " type="submit" style="background: hsl(224, 67%, 38%);color: white;">Restablecer la contraseña</button>
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+                <div class="col-sm-6 px-0 d-none d-sm-block ajusteimg">
+                    <img src="~/Content/images/292244152_415367150616799_892335905339182029_n.jpg" alt="Login image" class="imag" />
+                </div>
+            </div>
+        </div>
+        <div class="text-center" py-8>
+            <a class="small" href="@Url.Action("Index","Acceso")">Regresar al login</a>
+        </div>
+    </section>
+    <script src="~/Scripts/bootstrap.bundle.js"></script>
+</body>
+</html>
+

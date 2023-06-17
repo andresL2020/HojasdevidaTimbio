@@ -1,0 +1,131 @@
+﻿@model List<CapaEntidad.Reporte>
+@{
+    ViewBag.Title = "CrearReportPdf";
+    Layout = "~/Views/Shared/_Layout - Reporte.cshtml";
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Example 2</title>
+    <link href="~/Content/CrearReporte.css" rel="stylesheet" />
+</head>
+<body>
+    <header class="clearfix">
+        <div id="logo">
+            <img src="~/Content/images/hospital.jpg">
+        </div>
+        <div id="company">
+            <h2 class="name">Hospital Timbio</h2>
+            <div>Barrio San Judas, Cra. 22 #18-00, Timbio, Timbío, Cauca</div>
+            <div>0000-0000</div>
+            <div><a href="mailto:company@example.com">Hospital@gmail.com</a></div>
+        </div>
+    </header>
+    <main>
+        <div id="details" class="clearfix">
+            <div id="client">
+                <div class="to">REPORTE A:</div>
+                <h2 class="name" id="idNombrec">Nombre Persona</h2>
+                <div class="address">Docuento: <span id="idDocumento">15616</span></div>
+                <div class="email"><a href="https://accounts.google.com/signin/v2/challenge/pwd?TL=AG7eRGAcjEshMq8KF0KrdrU4FnSlE9rzLpOKu2OLc6PhF4xZTpwHGSwV5mlSm_Q7&cid=1&continue=https%3A%2F%2Fmyaccount.google.com%2Fsigninoptions%2Fpassword%3Fhl%3Des%26pli%3D1&flowName=GlifWebSignIn&hl=es&ifkv=Af_xneFe2uev3iMm4JUPuQgJGf7jAQNvcne1kZHm5gkfW5-VmyU6fhOI6ABBvvRN49xtl8dyfTCV&kdi=CAM&rart=ANgoxcf-0fO0c-fn1HIFgaRNxph7ZcRlYTtu9NRVC6izv7qLmrYSh0lFBNqGOEn__mQmQOHCVbpYKKY8i9bdlB-oMIg6MTm7Jg&sarp=1&scc=1&service=accountsettings&flowEntry=ServiceLogin:john@example.com" id="idcorreo">nombre@gmail.com</a></div>
+            </div>
+            <div id="invoice">
+                <h1>Reporte</h1>
+                <div class="date">Fecha Reporte: <span id="idFecha">01/06/2014</span></div>
+            </div>
+        </div>
+
+        <form class="mb-3 mt-4" action="@Url.Action("CrearReporte","ReporteVerificar")" method="get">
+            <button id="btnpdf" type="submit" class="btn btn-outline-primary mx-2"><i class="fas fa-file-pdf mx-1"></i>Generar Pdf</button>
+        </form>
+        <table id="tabla" class="m-2" border="0" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                    <th class="no">Oid</th>
+                    <th class="desc">Item</th>
+                    <th class="cumple">Cumple</th>
+                    <th class="observacion">Observacion</th>
+                    <th class="fecha">Fecha verificacion</th>
+                    <th class="fechare">Fecha resumen</th>
+                    <th class="total">N°</th>
+                </tr>
+            </thead>
+            <tbody id="idtbody">
+                @foreach (CapaEntidad.Reporte item in Model)
+                {
+                    <tr>
+                        <td class="no">@item.oid</td>
+                        <td class="desc">@item.Item</td>
+                        <td class="cumple">@item.Cumple</td>
+                        <td class="observacion">@item.Observacion</td>
+                        <td class="fecha">@item.FechaVerificacion</td>
+                        <td class="fechare">@item.FechaResumen</td>
+                        <td class="total">@item.Numero</td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+        <div id="thanks">Gracias!</div>
+        <div id="notices">
+            <div>NOTICE:</div>
+            <div class="notice">Algun dato aqui.</div>
+        </div>
+    </main>
+    <footer>
+        La factura se creó en una computadora y es válida sin la firma y el sello.
+    </footer>
+
+</body>
+</html>
+
+@*@section scripts{
+        <script>
+
+            const fecha = new Date().toLocaleDateString();
+
+        jQuery.ajax({
+            url: '@Url.Action("ListarFAcademica", "Verificar")',
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                $("#idNombrec").text(response.data.NombreCompleto)
+                $("#idDocumento").text(response.data.NumeroDocumento)
+                $("#idcorreo").text(response.data.CorreoElectronico)
+                $("#idFecha").text(fecha)
+            }
+
+        })
+
+        jQuery.ajax({
+            url: '@Url.Action("ListarReporte", "Verificar")',
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+
+                $.each(response.data, function (i, element) {
+
+                    $("<tr>").append(
+                        $("<td>").addClass("no").text(element.oid),
+                        $("<td>").addClass("desc").text(element.Item),
+                        $("<td>").addClass("cumple").text(element.Cumple),
+                        $("<td>").addClass("observacion").text(element.Observacion),
+                        $("<td>").addClass("fecha").text(element.FechaVerificacion),
+                        $("<td>").addClass("fechare").text(element.FechaResumen),
+                        $("<td>").addClass("total").text(element.Numero),
+                    ).appendTo("#idtbody")
+
+                })
+
+            }
+
+        })
+        </script>
+    }*@
+

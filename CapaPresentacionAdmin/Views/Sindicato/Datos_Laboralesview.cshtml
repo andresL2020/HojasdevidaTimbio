@@ -1,0 +1,573 @@
+﻿
+@{
+    ViewBag.Title = "Datos_Laboralesview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="hola">
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <i class="fas fa-user-circle"></i> Datos Laborales:
+        </div>
+        <div class="card-body">
+            <div class="row">
+
+                @*<div class="col-md-3">
+            <h3>Datos Laborales</h3>
+
+        </div>*@
+                <br>
+                <div class="hola1">
+                    <button type="button" class="btn btn-primary" onclick="abrirmodal(null)">Crear Datos Laboral</button>
+                </div>
+                <div>
+                    <div class="col-md-5 form-check-inline">
+                        <p class="form-label text-primary" id="idNombrec" style="font-size: 13px">NOMBRE DE LA PERSONA A VERIFICAR</p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <hr>
+                <table id="tablad" class="display cell-border" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Area</th>
+                            <th>Nombre Area</th>
+                            <th>Horas Contratadas</th>
+                            <th>Tipo Actividad</th>
+                            <th>Actividad</th>
+                            <th>Proceso</th>
+
+                            <th></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="FormModalDatoslaborales" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header  text-light" style="background: #000000">
+                <h5 class="modal-title" id="exampleModalLabel"> Formulario Datos Laborales</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div style="width: 85%; margin: 0 auto;">
+
+                    <section>
+
+                        <form class="row g-3 needs-validation" id="Formlaborales" novalidate>
+                            <input type="text" class="form-control" id="txtIddatoslaborales" value="0" style="display: none;">
+
+                            
+
+                            <div class="col-md-5">
+                                <label for="txtarea" class="form-label">Area de Cargo</label>
+                                <select class="form-control" name="txtarea" id="txtarea" required autocomplete="off">
+                                    <option value="Seleccione" required>Seleccione.</option>
+                                    <option value="Sindicato" required>Sindicato</option>
+                                    <option value="OPS" required>OPS</option>
+                                    <option value="Planta" required>Planta</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-check-inline">
+                                <label for="txtNombrearea" class="form-label">Nombre Area</label>
+                                <input type="text" class="form-control" id="txtNombrearea" required autocomplete="off">
+                            </div>
+                            <div class="col-md-5">
+                                <label for="txttipoactividades" class="form-label">Tipo de actividades</label>
+                                <select class="form-control" name="txttipoactividades" id="txtipoactividad" required autocomplete="off">
+                                    <option value="todas" id="tActividad" selected required>Seleccione.</option>
+                                </select>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="validationCustom04" class="form-label">Actividades</label>
+                                    <select class="form-select" multiple aria-label="multiple select example" id="txtActividad" required autocomplete="off">
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="validationCustom04" class="form-label">Subprocesos</label>
+                                    <select class="form-select form-control-lg" multiple aria-label="multiple select example" id="txtProceso" required autocomplete="off">
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 form-check-inline">
+                                <label for="txtfechain" class="form-label">Fecha ingreso</label>
+                                <input type="text" class="form-control" id="txtfechain" placeholder="dd-mm-yy" required autocomplete="off" onchange="calcularHorasTrabajadas()">
+                            </div>
+                            <div class="col-md-3 form-check-inline">
+                                <label for="txtfechare" class="form-label">Fecha retiro</label>
+                                <input type="text" class="form-control" id="txtfechare" placeholder="dd-mm-yy" required autocomplete="off" onchange="calcularHorasTrabajadas()">
+                            </div>
+                            <div class="col-md-3 form-check-inline">
+                                <label for="txthorascon" class="form-label">Horas contratadas al mes</label>
+                                <input type="text" class="form-control" id="txthorascon" required autocomplete="off">
+                            </div>
+
+                        </form>
+                    </section>
+
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <div id="mensajEerror" class="alert alert-danger" role="alert">
+                                A simple danger alert—check it out!
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary" onclick="Guardar()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalresult" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Mensaje</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+
+                Guardado Correctamente
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<select required="required" class="form-control" name="servicio" id="servicio">
+    <option value="" selected="selected"></option>
+    <option value="1">HelpDesk</option>
+    <option value="2">HelpDesk2</option>
+</select>
+<br>
+<br>
+<input id="servicioSelecionado" name="nom_Servicio">*@
+
+@section scripts{
+    <script>
+
+        function calcularHorasTrabajadas() {
+            var fechaIngreso = document.getElementById("txtfechain").value;
+            var fechaRetiro = document.getElementById("txtfechare").value;
+
+            // Verificar si ambos campos de fecha tienen valores antes de calcular
+            if (fechaIngreso && fechaRetiro) {
+                var fechaInicio = new Date(fechaIngreso.split("-").reverse().join("-"));
+                var fechaFin = new Date(fechaRetiro.split("-").reverse().join("-"));
+
+                var diasTrabajados = 0;
+
+                for (var date = new Date(fechaInicio); date <= fechaFin; date.setDate(date.getDate() + 1)) {
+
+                    var dayOfWeek = date.getDay(); // Obtener el día de la semana (0: Domingo, 1: Lunes, ...)
+                    if (dayOfWeek !== 0 && dayOfWeek !== 4) {
+                        diasTrabajados++; // Aumentar el contador solo si no es fin de semana (días laborables)
+                    }
+                }
+
+                var horasTrabajadas = diasTrabajados * 160; // Total de horas trabajadas considerando 8 horas diarias
+
+                document.getElementById("txthorascon").value = horasTrabajadas;
+            }
+        }
+
+        var tActividadPrevia;
+        var tipoActSinRepetir = [];
+        var unicos = [];
+
+        const inputtxtNombrearea = document.getElementById("txtNombrearea");
+        const validateInput = function (input) {
+            const value = input.value.trim();
+            const hasNumbers = /\d/.test(value);
+
+            if (hasNumbers) {
+                input.setCustomValidity("No se permiten números en este campo");
+                input.classList.add("is-invalid");
+            } else {
+                input.setCustomValidity("");
+                input.classList.remove("is-invalid");
+            }
+        };
+
+        inputtxtNombrearea.addEventListener("input", function () {
+            validateInput(inputtxtNombrearea);
+        });
+
+        function unicosElementos() {
+            for (var i = 0; i < tipoActSinRepetir.length; i++) {
+                const elemento = tipoActSinRepetir[i]
+
+                if (!unicos.includes(tipoActSinRepetir[i])) {
+                    unicos.push(elemento)
+                }
+            }
+        }
+
+
+
+        $(document).on('change', '#txtipoactividad', function (event) {
+
+            tActividadPrevia = $("#txtipoactividad option:selected").text()
+
+                jQuery.ajax({
+                    url: '@Url.Action("ListarActividadSindicato", "Sindicato")',
+                    type: "POST",
+                    data: JSON.stringify({ tActividad: $("#txtipoactividad option:selected").text() }),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (response) {
+
+                        $("#txtActividad").empty();
+                        $.each(response.data, function (i, element) {
+                            $("<option>").attr({ "name": element.NombreActividad, "value": element.IdActividad, "id": "a" + i }).text(element.NombreActividad).appendTo("#txtActividad")
+
+                        })
+                    }
+                })
+
+        });
+
+
+
+        $("#txtfechain").datepicker({ dateFormat: 'yy-mm-dd' }).datepicker('setDate', new Date())
+        $("#txtfechare").datepicker({ dateFormat: 'yy-mm-dd' }).datepicker('setDate', new Date())
+
+        var tabladata;
+        var filaSeleccionada;
+        var prueba = 0;
+
+          jQuery.ajax({
+                url: '@Url.Action("ListarRequisitos", "Sindicato")',
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    console.log(response)
+                    $("#idNombrec").text(response.data.NombreCompleto)
+
+                }
+
+            })
+
+
+
+        tabladata = $("#tablad").DataTable({
+            responsive: true,
+            ordering: false,
+            "ajax": {
+                url: '@Url.Action("ListarDatosLaborales", "Sindicato")',
+                type: "GET",
+                dataType: "json",
+            },
+            "columns": [
+                { "data": "IdDatosLaborales"},
+                { "data": "Area" },
+                { "data": "NombreArea" },
+                { "data": "HorasContratadas" },
+                { "data": "TipoActividad" },
+                { "data": "IdActividad" },
+                { "data": "IdProceso" },
+
+                {
+                    "defaultContent": '<button type="button" class="btn btn-primary btn-sm btn-editarDatosLaborales"><i class="fas fa-pen"></i></button>' +
+                        '<button type="button" class="btn btn-danger btn-sm ms-2 btn-eliminarDL"><i class="fas fa-trash"></i></button>',
+                    "orderable": false,
+                    "searchable": false,
+                    "width": "90px"
+                }
+            ],
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.13.3/i18n/es-ES.json"
+            }
+
+        })
+
+        function abrirmodal(json) {
+
+            var tipoActividad = "";
+            var actividad = 0
+            var proceso = 0
+
+
+            if (json != null) {
+                tipoActividad = json.TipoActividad;
+                actividad = json.IdActividad;
+                proceso = json.IdProceso;
+
+            }
+
+            document.getElementById("Formlaborales").reset();
+            $("#txtIddatoslaborales").val(0);
+            $("#mensajEerror").hide();
+
+
+            jQuery.ajax({
+                url: '@Url.Action("ListarActividadSindicato", "Sindicato")',
+                type: "POST",
+                data: JSON.stringify({ tActividad: $("#tActividad").val() }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+
+                    $("#txtActividad").empty();
+                    $("#txtipoactividad").empty();
+                    $("<option>").attr({ "value": "todas", "id": "tActividad"}).text("todas").appendTo("#txtipoactividad")
+
+                    $.each(response.data, function (i, element) {
+
+                        if (element.IdActividad == actividad) {
+
+
+
+                            $("<option>").attr({ "name": element.NombreActividad, "value": element.IdActividad, "id": "a" + i, "selected": "selected" }).text(element.NombreActividad).appendTo("#txtActividad")
+
+                        } else {
+                            $("<option>").attr({ "name": element.NombreActividad, "value": element.IdActividad, "id": "a" + i}).text(element.NombreActividad).appendTo("#txtActividad")
+                        }
+                        tipoActSinRepetir.push(element.TipoActividad)
+
+
+
+
+                    })
+                    unicosElementos()
+
+                    $.each(unicos, function (i, element) {
+
+                        if (element == tipoActividad) {
+
+                            $("<option>").attr({ "value": element, "id": "a" + i, "selected": "selected" }).text(element).appendTo("#txtipoactividad")
+
+                        }else {
+                            $("<option>").attr({ "value": element, "id": "a" + i}).text(element).appendTo("#txtipoactividad")
+                        }
+                    })
+
+
+
+
+                }
+            })
+
+
+
+            jQuery.ajax({
+                url: '@Url.Action("ListarProcesos", "Home")',
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    $.each(response.data, function (i, element) {
+
+                        if (element.IdProceso == proceso) {
+                            $("<option>").attr({ "name": element.NombreProceso, "value": element.IdProceso, "id": "a" + i, "selected": "selected" }).text(element.NombreProceso).appendTo("#txtProceso")
+                        } else {
+                            $("<option>").attr({ "name": element.NombreProceso, "value": element.IdProceso, "id": "a" + i }).text(element.NombreProceso).appendTo("#txtProceso")
+
+                        }
+
+                    })
+
+
+                }
+            })
+
+            if (json != null) {
+
+
+                $("#txtIddatoslaborales").val(json.IdDatosLaborales)
+                $("#txtarea").val(json.Area == "Sindicato" ? "Sindicato" : json.Area == "OPS" ? "OPS" : "Planta");
+                $("#txtNombrearea").val(json.NombreArea);
+                $("#txtfechain").val(json.FechaIngreso);
+                $("#txtfechare").val(json.FechaRetiro);
+                $("#txthorascon").val(json.HorasContratadas);
+                $("#txtipoactividad").val(json.TipoActividad);
+                $("#txtActividad").val(json.IdActividad);
+                $("#txtProceso").val(json.IdProceso);
+
+
+            }
+
+
+            $("#FormModalDatoslaborales").modal("show");
+        }
+
+        //Editar
+        $("#tablad tbody").on("click", '.btn-editarDatosLaborales', function () {
+
+            var filaSeleccionada = $(this).closest("tr");
+            var data = tabladata.row(filaSeleccionada).data();
+
+             abrirmodal(data)
+
+        })
+
+        var selectActividad = document.getElementById('txtActividad');
+        var selectProceso = document.getElementById('txtProceso');
+        var idActividad;
+        var idProceso;
+
+
+        selectActividad.addEventListener('change',
+            function () {
+                idActividad = this.options[selectActividad.selectedIndex].value;
+
+
+            })
+
+        selectProceso.addEventListener('change',
+            function () {
+                idProceso = this.options[selectProceso.selectedIndex].value;
+
+            })
+
+
+        // eliminar Datos laborales
+        $("#tablad tbody").on("click", '.btn-eliminarDL', function () {
+
+            var usuarioseleccionado = $(this).closest("tr");
+            var data = tabladata.row(usuarioseleccionado).data();
+
+            swal({
+                title: "¿Esta seguro?",
+                text: "Desea eliminar el registro?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-primary",
+                confirmButtonText: "Si!",
+                cancelButtonText: "No, cancelar",
+                closeOnConfirm: true
+
+            },
+                function () {
+                    jQuery.ajax({
+                        url: '@Url.Action("EliminarDLaborales", "Sindicato")',
+                        type: "POST",
+                        data: JSON.stringify({ id: data.IdDatosLaborales}),
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+
+                            if (data.resultado) {
+                                tabladata.row(usuarioseleccionado).remove().draw();
+
+                            } else {
+                                swal("Error al eliminar", data.mensaje, "error")
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        },
+
+                    });
+
+                });
+        })
+
+        function Guardar() {
+
+
+            //undefined las dos
+            if (idActividad == undefined & idProceso == undefined) {
+                //usp el find porque el val() me devuelve un arreglo
+                idActividad = $("#txtActividad").val().find(element => element != undefined);
+                idProceso = $("#txtProceso").val().find(element => element != undefined);
+
+                console.log("undefined las dos")
+
+            }
+
+            //undefined solo proceso
+            if (idActividad != undefined & idProceso == undefined) {
+                idProceso = $("#txtProceso").val().find(element => element != undefined);
+            }
+
+
+
+
+            var DatosLab = {
+
+                IdDatosLaborales: $("#txtIddatoslaborales").val(),
+                Area: $("#txtarea").val(),
+                NombreArea: $("#txtNombrearea").val(),
+                TipoActividad: $("#txtipoactividad").val(),
+                FechaIngreso: $("#txtfechain").val(),
+                FechaRetiro: $("#txtfechare").val(),
+                HorasContratadas: $("#txthorascon").val(),
+                IdActividad: idActividad,
+                IdProceso: idProceso,
+            }
+
+
+
+             jQuery.ajax({
+                url: '@Url.Action("GuardarDatosLaborales", "Sindicato")',
+                type: "POST",
+                 data: JSON.stringify({ objeto: DatosLab }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                 success: function (data) {
+
+                        //Usuario Nuevo
+                     if (DatosLab.IdDatosLaborales == 0) {
+
+                         if (data.resultado != 0) {
+
+                             DatosLab.IdDatosLaborales = data.resultado;
+                             tabladata.row.add(DatosLab).draw(false);
+                             $("#FormModalDatoslaborales").modal("hide");
+                         } else {
+
+
+                             $("#mensajEerror").text(data.mensaje)
+                             $("#mensajEerror").show()
+                             $("#modalresult").modal("show");
+                         }
+
+                         //Usuario Editar
+                     }
+                     else {
+
+                         if (data.resultado) {
+
+                             tabladata.row(filaSeleccionada).data(DatosLab).draw(false);
+                             filaSeleccionada = null;
+                             $("#FormModalDatoslaborales").modal("hide");
+                             $("#modalresult").modal("show");
+
+                         } else {
+                             $("#mensajEerror").text(data.mensaje)
+                             $("#mensajEerror").show()
+                         }
+
+
+                     }
+                },
+                        error: function (error) {
+                            console.log(error)
+                        }
+            });
+         }
+
+    </script>
+}

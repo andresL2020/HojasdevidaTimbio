@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "ReporteGeneral";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <p>Reporte General</p>
+            </div>
+            <div class="card-body">
+                <form class="mb-3" action="@Url.Action("exportarRpGeneral","Home")" method="post">
+                    <div class="row align-items-end">
+                      <div class="col-sm-3">
+                            <label class="form-text">Experiencia Laboral:</label>
+                            <select id="txtExlaboral" class="form-select" name="exLaboral">
+                                <option selected value="todo">Todos</option>
+                                <option value="Na">Na</option>
+                                <option value="Si">Si</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <button id="btnconsultar" type="button" class="btn btn-primary">Consultar</button>
+                            <button id="btnexportar" type="submit" class="btn btn-success"><i class="fas fa-file-excel mx-1"></i>Exportar</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="row border border-secondary border-1 rounded-1 p-2" style="font-size:0.76rem">
+                    <table id="tabla" class="table table-hover" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>TipoIdentificacion</th>
+                                <th>NumeroDocumento</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Telefono</th>
+                                <th>CargoAspira</th>
+                                <th>EducacionSuperior</th>
+                                <th>Cursos</th>
+                                <th>exp_laboral</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    
+    <script>
+
+        var tabladata
+        var Url = '@Url.Action("ListarRpGeneral", "Home")' +
+        "?consultar=" + $("#txtExlaboral").val()
+
+        $(document).ready(function () {
+            tabladata = $("#tabla").DataTable({
+                responsive: true,
+                ordering: false,
+                "ajax": {
+                    url: Url,
+                    type: "GET",
+                    dataType: "json",
+                },
+                "columns": [
+                    { "data": "TipoIdentificacion" },
+                    { "data": "NumeroDocumento" },
+                    { "data": "Nombres" },
+                    { "data": "Apellidos" },
+                    { "data": "Telefono" },
+                    { "data": "CargoAspira" },
+                    { "data": "EducacionSuperior" },
+                    { "data": "Cursos" },
+                    { "data": "exp_laboral" },
+                ],
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.13.3/i18n/es-ES.json"
+                }
+            })
+
+            $("#btnconsultar").on("click", function () {
+
+                var nueva_url = '@Url.Action("ListarRpGeneral", "Home")' +
+                    "?consultar=" + $("#txtExlaboral").val()
+
+                tabladata.ajax.url(nueva_url).load();
+            })
+
+        });
+
+    </script>
+    
+}

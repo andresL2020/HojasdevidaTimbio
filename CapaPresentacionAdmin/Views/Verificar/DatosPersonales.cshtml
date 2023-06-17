@@ -1,0 +1,332 @@
+﻿
+@{
+    ViewBag.Title = "DatosPersonales";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="mb-3 mt-2">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow p-3 mb-4 bg-body rounded border border-1" style="width:100%">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="@Url.Action("Buscar","Verificar")">Buscar</a>
+                    <a class="nav-link text-primary" href="@Url.Action("DatosPersonales","Verificar")">Datos Personales</a>
+                    <a class="nav-link" href="@Url.Action("FormacionAcademica","Verificar")">Formacion Academica</a>
+                    <a class="nav-link" href="@Url.Action("Capacitaciones","Verificar")">Cursos</a>
+                    <a class="nav-link" href="@Url.Action("Idiomas","Verificar")">Idiomas</a>
+                    <a class="nav-link" href="@Url.Action("ExperienciaLaboral","Verificar")">ExLaboral</a>
+                    <a class="nav-link" href="@Url.Action("DatosLaborales","Verificar")">Datos Laborales</a>
+                    <a class="nav-link" href="@Url.Action("Requisitos","Verificar")">Requisitos</a>
+                    <a class="nav-link" href="@Url.Action("Reporte","Verificar")">Reporte</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-briefcase"></i>  <span class="text-secondary">Verificar Hoja De Vida/ Datos Personales</span>
+    </div>
+
+    <div class="card-body" id="idbody">
+        <div class="contenido_texto block" data-seccion="1">
+            <section>
+                <form class="row g-3 needs-validation" novalidate>
+                    <div class="col-3">
+                        <p class="form-label text-danger" id="idNombrec" style="font-size: 13px">NOMBRE DE LA PERSONA A VERIFICAR</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="form-label" id="idArea" for="validationCustom05" style="font-size:13px">UNION DE EMPLEADOS TRABAJADORES Y CONTRATISTAS DE LA SALUD - UTRASSALUD Gestion Humana Profecional del Talento Humano</p>
+                    </div>
+                    <div class="col-3">
+                        <p class="form-label" id="idverific" for="validationCustom05" style="font-size:13px">Confirmado:</p>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <div class="hola">
+                            <label for="identificacion" class="form-label" style="font-size: 15px; height: 15px">Identificacion</label>
+                            <input id="identificacion" type="text" class="form-control" value="@Session["numDocumento"]" style="height: 30px" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mt-1">
+                        <div class="form-check form-check-inline" style="margin-top: 25px;">
+                            <input class="form-check-input" type="radio" name="tDocument" id="cc" value="CC">
+                            <label class="form-check-label" for="cc" style="font-size: 15px; height: 15px">
+                                C.C
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="ce" name="tDocument" value="CE">
+                            <label class="form-check-label" for="ce" style="font-size: 15px; height: 15px">
+                                C.E
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="pas" name="tDocument" value="PAS">
+                            <label class="form-check-label" for="pas" style="font-size: 15px; height: 15px">
+                                PAS
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <div class="form-check form-check-inline" style="margin-top: 25px;">
+                            <input class="form-check-input" type="radio" id="idMaculino" name="genero" value="Masculino">
+                            <label class="form-check-label" for="idMaculino">
+                                Masculino
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="genero" id="idFemenino" value="Femenino">
+                            <label class="form-check-label" for="idFemenino">
+                                Femenino
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <div class="ciud">
+                            <label for="validationCustom01" class="form-label"><B>Ciudadania:</B></label>
+                            <div class="form-check form-check-inline" style="margin-top: 25px;">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label" for="inlineCheckbox2">C.E</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                                <label class="form-check-label" for="inlineCheckbox3">PAS</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <label for="validationCustom01" class="form-label" style="font-size: 15px; height: 15px">Pais</label>
+                        <input type="text" class="form-control" id="idPais" value="" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <label for="idFechaExp" class="form-label" style="font-size: 15px; height: 15px">Fecha de expedición</label>
+                        <input type="text" class="form-control" id="idFechaExp" value="" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <label for="idLugarExp" class="form-label" style="font-size: 15px; height: 15px">lugar de expedicion</label>
+                        <input type="text" class="form-control" id="idLugarExp" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <label for="idEstadoC" class="form-label" style="font-size: 15px; height: 15px">Estado civil</label>
+                        <input type="text" class="form-control" id="idEstadoC" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <label for="idPnombre" class="form-label" style="font-size: 15px; height: 15px">Primer nombre</label>
+                        <input type="text" class="form-control" id="idPnombre" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <label for="idSnombre" class="form-label" style="font-size: 15px; height: 15px">Segundo nombre</label>
+                        <input type="text" class="form-control" id="idSnombre" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <label for="idPapellido" class="form-label" style="font-size: 15px; height: 15px">Primer apellido</label>
+                        <input type="text" class="form-control" id="idPapellido" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <label for="idSapellido" class="form-label" style="font-size: 15px; height: 15px">Segundo apellido</label>
+                        <input type="text" class="form-control" id="idSapellido" style="height: 30px" required>
+                    </div>
+
+                    <div class="col-md-3 mt-1">
+                        <label for="idNlibreta" class="form-label" style="font-size: 15px; height: 15px">N° Libreta militar</label>
+                        <input type="text" class="form-control" id="idNlibreta" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <label for="idDmilitar" class="form-label" style="font-size: 15px; height: 15px">Distrito militar</label>
+                        <input type="text" class="form-control" id="idDmilitar" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-4 mt-1">
+                        <label for="idLmilitar" class="form-label" style="font-size: 15px; height: 15px"><B>Libreta Militar</B></label>
+                        <input type="text" class="form-control" id="idLmilitar" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <label for="idFnacimiento" class="form-label" style="font-size: 15px; height: 15px">Fecha de nacimiento</label>
+                        <input type="text" class="form-control" id="idFnacimiento" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <label for="idPnacimiento" class="form-label" style="font-size: 15px; height: 15px">Pais de nacimiento</label>
+                        <input type="text" class="form-control" id="idPnacimiento" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <label for="idDnacimiento" class="form-label" style="font-size: 15px; height: 15px">Departamento de nacimiento</label>
+                        <input type="text" class="form-control" id="idDnacimiento" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <label for="idCnacimiento" class="form-label" style="font-size: 15px; height: 15px">Ciudad de nacimiento</label>
+                        <input type="text" class="form-control" id="idCnacimiento" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <label for="idDireccion" class="form-label" style="font-size: 15px; height: 15px">Dirección</label>
+                        <input type="text" class="form-control" id="idDireccion" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <label for="idPdireccion" class="form-label" style="font-size: 15px; height: 15px">Pais Dirección</label>
+                        <input type="text" class="form-control" id="idPdireccion" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <label for="idDdireccion" class="form-label" style="font-size: 15px; height: 15px">Departamento Dirección</label>
+                        <input type="text" class="form-control" id="idDdireccion" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <label for="idCdireccion" class="form-label" style="font-size: 15px; height: 15px">Ciudad Dirección</label>
+                        <input type="text" class="form-control" id="idCdireccion" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <label for="idTelefon" class="form-label" style="font-size: 15px; height: 15px">Telefono</label>
+                        <input type="text" class="form-control" id="idTelefon" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <label for="idCorreo" class="form-label" style="font-size: 15px; height: 15px">Correo electronico</label>
+                        <input type="text" class="form-control" id="idCorreo" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <label for="idGsanguineo" class="form-label" style="font-size: 15px; height: 15px">Grupo sanguineo</label>
+                        <input type="text" class="form-control" id="idGsanguineo" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <label for="idGetnico" class="form-label" style="font-size: 15px; height: 15px">Grupo etnico</label>
+                        <input type="text" class="form-control" id="idGetnico" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-6 mt-1">
+                        <label for="idProfesion" class="form-label" style="font-size: 15px; height: 15px">Profesión</label>
+                        <input type="text" class="form-control" id="idProfesion" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-6 mt-1">
+                        <label for="validationCustom04" class="form-label" style="font-size: 15px; height: 15px">Eps</label>
+                        <input type="text" class="form-control" id="idEps" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-6 mt-1">
+                        <label for="idFpension" class="form-label" style="font-size: 15px; height: 15px">Fondo Pensiones</label>
+                        <input type="text" class="form-control" id="idFpension" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-6 mt-1">
+                        <label for="validationCustom04" class="form-label" style="font-size: 15px; height: 15px">ARL</label>
+                        <input type="text" class="form-control" id="idArl" style="height: 30px" required>
+                    </div>
+                    <div class="col-md-3 mt-1">
+                        <label for="idNhijos" class="form-label" style="font-size: 15px; height: 15px">Numero hijos</label>
+                        <input type="text" class="form-control" id="idNhijos" style="height: 30px" required>
+                    </div>
+
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="idEstado" value="option1">
+                        <label class="form-check-label" for="inlineCheckbox1">INACTIVO.</label>
+                    </div>
+
+                    <hr> <!-- cambio de tema se agrega una linea para separar los temas. -->
+                </form>
+            </section>
+
+
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+
+
+
+        jQuery.ajax({
+            url: '@Url.Action("ListarDatosPersonales", "Verificar")',
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                $.each(response.data, function (i, element) {
+
+                    $("#identificacion").val(element.NumeroDocumento)
+
+                    if (element.TipoIdentificacion == $("#cc").val()) {
+                        $("#cc").prop("checked", true)
+                    }else if(element.TipoIdentificacion == $("#ce").val()) {
+                       $("#ce").prop("checked", true)
+                    }
+                    else if (element.TipoIdentificacion == $("#pas").val()) {
+                        $("#pas").prop("checked", true)
+                    }
+
+                    if (element.Genero == $("#idMaculino").val()) {
+                        $("#idMaculino").prop("checked", true)
+                    } else if (element.TipoIdentificacion == $("#idFemenino").val()) {
+                        $("#idFemenino").prop("checked", true)
+                    }
+
+                    if (element.Estado == 0) {
+                        $("#idEstado").prop("checked", true)
+                    }
+
+                    $("#idPais").val(element.Pais)
+                    $("#idFechaExp").val(element.FechaExpedicion)
+                    $("#idLugarExp").val(element.LugarExpedicion)
+                    $("#idEstadoC").val(element.EstadoCivil)
+                    $("#idPnombre").val(element.PrimerNombre)
+                    $("#idSnombre").val(element.SegundoNombre)
+                    $("#idPapellido").val(element.PrimerApellido)
+                    $("#idSapellido").val(element.SegundoApellido)
+                    $("#idNlibreta").val(element.NumeroLibreta)
+                    $("#idDmilitar").val(element.DistritoMilitar)
+                    $("#idLmilitar").val(element.LibretaMilitar)
+                    $("#idFnacimiento").val(element.FechaNacimiente)
+                    $("#idPnacimiento").val(element.PaisNacimiento)
+                    $("#idDnacimiento").val(element.DeapartamentoNacimiento)
+                    $("#idCnacimiento").val(element.CiudadNacimiento)
+                    $("#idDireccion").val(element.Direccion)
+                    $("#idPdireccion").val(element.PaisDireccion)
+                    $("#idDdireccion").val(element.DepartamentoResidencia)
+                    $("#idCdireccion").val(element.CiudadDireccion)
+                    $("#idTelefon").val(element.Telefono)
+                    $("#idCorreo").val(element.CorreoElectronico)
+                    $("#idGsanguineo").val(element.GrupoSanguineo)
+                    $("#idGetnico").val(element.GrupoEtnico)
+                    $("#idProfesion").val(element.Profesion)
+                    $("#idEps").val(element.Eps)
+                    $("#idFpension").val(element.FondoPensiones)
+                    $("#idArl").val(element.Arl)
+                    $("#idNhijos").val(element.NumeroHijos)
+                    $("#idNombrec").val(element.NombreCompleto)
+                    $("#idNombrec").text(element.NombreCompleto)
+
+                    if (element.Verificado != 'Si') {
+                        $('#idNombrec').addClass('text-danger');
+                    } else {
+                        $('#idNombrec').removeClass('text-danger');
+                        $('#idNombrec').addClass('text-primary');
+                    }
+
+
+                })
+                $("#idbody").LoadingOverlay("hide")
+            },
+            error: function (error) {
+
+                $("#idbody").LoadingOverlay("hide")
+
+                $("#FormModal").modal("show");
+                $("#respuesta").text("Error Ajax", error)
+
+
+            },
+            beforeSend: function () {
+
+                $("#idbody").LoadingOverlay("show", {
+                    imageResizeFactor: 2,
+                    text: "Cargando...",
+                    size: 14
+                })
+
+            }
+
+        })
+
+    </script>
+
+}
+

@@ -1,0 +1,591 @@
+﻿@model CapaEntidad.PaginasLista
+@{
+    ViewBag.Title = "CrearReportPdf";
+    Layout = "~/Views/Shared/_Layout - Reporte.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Example 2</title>
+    <style>
+                font-face {
+                    font-family: SourceSansPro;
+                    src: url(SourceSansPro-Regular.ttf);
+                }
+
+                .clearfix:after {
+                    content: "";
+                    display: table;
+                    clear: both;
+                }
+
+                a {
+                    color: #0087C3;
+                    text-decoration: none;
+                }
+
+                body {
+                    position: relative;
+                    width: 21cm;
+                    height: 29.7cm;
+                    margin: 0 auto;
+                    color: #555555;
+                    background: #FFFFFF;
+                    font-family: Arial, sans-serif;
+                    font-size: 14px;
+                    font-family: SourceSansPro;
+                }
+
+                header {
+                    padding: 10px 0;
+                    margin-bottom: 20px;
+                    border-bottom: 1px solid #AAAAAA;
+                }
+
+                #logo {
+                    float: left;
+                    margin-top: 20px;
+                }
+
+                    #logo img {
+                        height: 80px;
+                        width: 80px;
+                    }
+
+                #company {
+                    float: right;
+                    text-align: right;
+                }
+
+
+                #details {
+                    margin-bottom: 50px;
+                }
+
+                #client {
+                    padding-left: 6px;
+                    border-left: 6px solid #0087C3;
+                    float: left;
+                }
+
+                #encabezado {
+                    height: 115px;
+                    padding-left: 6px;
+                    border-right: 1px solid #000000;
+                    border-top: 1px solid #000000;
+                    border-bottom: 1px solid #000000;
+                    float: left;
+                    text-align: center;
+                    width: 240px;
+                }
+
+        #encabezadoImg {
+            height: 115px;
+            padding-left: 6px;
+            border-right: 1px solid #000000;
+            border-top: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+            float: left;
+            text-align: center;
+            width: 130px;
+        }
+
+                #client .to {
+                    color: #777777;
+                }
+
+                h2.name {
+                    font-size: 1.4em;
+                    font-weight: normal;
+                    margin: 0;
+                }
+
+                #invoice {
+                    float: right;
+                    text-align: right;
+                }
+
+                    #invoice h1 {
+                        color: #0087C3;
+                        font-size: 2.4em;
+                        line-height: 1em;
+                        font-weight: normal;
+                        margin: 0 0 10px 0;
+                    }
+
+                    #invoice .date {
+                        font-size: 1.1em;
+                        color: #777777;
+                    }
+
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    border-spacing: 0;
+                    margin-bottom: 20px;
+                }
+
+
+                    table .thdesc,
+                    table td,
+                    table tr {
+                        width: 60%;
+                        padding: 6px;
+                        background: #FFFFFF;
+                        text-align: center;
+                        border: 1px solid #292929;
+                    }
+
+                    table .thobservacion,
+                    table .thcumple {
+                        width: 35%;
+                        padding: 6px;
+                        background: #FFFFFF;
+                        text-align: center;
+                        border: 1px solid #292929;
+                    }
+
+                    table th {
+                        white-space: nowrap;
+                        font-weight: normal;
+                        text-align: center;
+                    }
+
+                    table td {
+                        text-align: left;
+                    }
+
+                    table th {
+                        text-align: left;
+                    }
+
+
+                    table td h3 {
+                        color: #57B223;
+                        font-size: 1.2em;
+                        font-weight: normal;
+                        margin: 0 0 0.2em 0;
+                    }
+
+                    table .no {
+                        color: #FFFFFF;
+                        /*font-size: 1rem;*/
+                        background: #0087C3;
+                        padding: 5px;
+                        height: 4px;
+                        width: 4px;
+                        text-align: left;
+                    }
+
+                    table .desc {
+                        text-align: left;
+                    }
+
+                    table .cumple {
+                        /* background: #DDDDDD; */
+                        text-align: left;
+                    }
+
+
+                    table .observacion {
+                        /* background: #DDDDDD; */
+                        text-align: left;
+                    }
+
+                    table .total {
+                        /*background: #57B223;
+        color: #FFFFFF;*/
+                        padding: 5px;
+                        height: 4px;
+                        width: 4px;
+                    }
+
+                    table td.cumple,
+                    table td.observacion,
+                    table td.total,
+                    table td.fechare {
+                        /* font-size: 1.2em; */
+                        text-align: left;
+                    }
+
+
+
+                    table tfoot td {
+                        padding: 10px 20px;
+                        background: #FFFFFF;
+                        border-bottom: none;
+                        font-size: 1.2em;
+                        white-space: nowrap;
+                        border-top: 1px solid #AAAAAA;
+                    }
+
+                    table tfoot tr:first-child td {
+                        border-top: none;
+                    }
+
+                    table tfoot tr:last-child td {
+                        color: #57B223;
+                        font-size: 1.4em;
+                        border-top: 1px solid #57B223;
+                    }
+
+                    table tfoot tr td:first-child {
+                        border: none;
+                    }
+
+                #thanks {
+                    font-size: 1rem;
+                    margin-bottom: 50px;
+                    margin-top: 30px;
+                }
+
+                #notices {
+                    padding-left: 6px;
+                    border-left: 6px solid #0087C3;
+                }
+
+                    #notices .notice {
+                        font-size: 1.2em;
+                    }
+
+
+                .bolded {
+                    font-weight: bold;
+                }
+
+                table .mayuscula {
+                    text-transform: uppercase;
+                }
+
+                table .descripcion {
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                }
+
+                #salto {
+                    height: 12rem;
+                    background-color: #ffffff;
+                }
+
+        .encabezadoBorder{
+            margin-bottom:6px;
+            border-bottom: 1px solid #000000;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="clearfix">
+        @*<div id="logo">
+                <img src="~/Content/images/hospital.jpg">
+            </div>
+            <div id="company">
+                <h2 class="name">Hospital Timbio</h2>
+                <div>Barrio San Judas, Cra. 22 #18-00, Timbio, Timbío, Cauca</div>
+                <div>0000-0000</div>
+                <div><a href="mailto:company@example.com">Hospital@gmail.com</a></div>
+            </div>*@
+        <div class="otraimg">
+            <div id="encabezadoImg">
+                <div><img src="~/Content/images/escudo-nacional-de-colombia.jpg" alt="" style="width:120px; height:80px; margin-top:10px"></div>
+            </div>
+            <div id="encabezado">
+                <div class="encabezadoBorder">
+                    <div>REPUBLICA DE COLOMBIA-</div>
+                    <div>DEPARTAMENTO DEL CAUCA</div>
+                </div>
+                <div>
+                    <div>Formato Informe Verificacion Requisitos de Ingreso</div>
+                </div>
+            </div>
+            <div id="encabezadoImg">
+                <div><img src="~/Content/images/hospital.jpg" alt="" style="width: 120px; height: 70px; margin-top: 10px"></div>
+            </div>
+            <div id="encabezado">
+                <h2 class="name">Hospital Timbio</h2>
+                <div>Barrio San Judas, Cra. 22 #18-00, Timbio</div>
+                <div>0000-0000</div>
+                <div><a href="mailto:company@example.com">Hospital@gmail.com</a></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div id="details" class="clearfix">
+
+            @{
+                CapaEntidad.Reporte report = Model.hoja1.FirstOrDefault();
+
+                if (report.objPersona != null)
+                {
+                    <div id="client">
+                        <div class="to">REPORTE A:</div>
+                        <h2 class="name">@report.objPersona.PrimerNombre</h2>
+                        <div class="email">
+                            <a href="https://accounts.google.com/signin/v2/challenge/pwd?TL=AG7eRGAcjEshMq8KF0KrdrU4FnSlE9rzLpOKu2OLc6PhF4xZTpwHGSwV5mlSm_Q7&cid=1&continue=https%3A%2F%2Fmyaccount.google.com%2Fsigninoptions%2Fpassword%3Fhl%3Des%26pli%3D1&flowName=GlifWebSignIn&hl=es&ifkv=Af_xneFe2uev3iMm4JUPuQgJGf7jAQNvcne1kZHm5gkfW5-VmyU6fhOI6ABBvvRN49xtl8dyfTCV&kdi=CAM&rart=ANgoxcf-0fO0c-fn1HIFgaRNxph7ZcRlYTtu9NRVC6izv7qLmrYSh0lFBNqGOEn__mQmQOHCVbpYKKY8i9bdlB-oMIg6MTm7Jg&sarp=1&scc=1&service=accountsettings&flowEntry=ServiceLogin:john@example.com"
+                               id="idcorreo">@report.objPersona.CorreoElectronico</a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div id="client">
+                        <div class="to">REPORTE A:</div>
+                        <h2 class="name"> Persona</h2>
+                        <div class="email">
+                            <a href="https://accounts.google.com/signin/v2/challenge/pwd?TL=AG7eRGAcjEshMq8KF0KrdrU4FnSlE9rzLpOKu2OLc6PhF4xZTpwHGSwV5mlSm_Q7&cid=1&continue=https%3A%2F%2Fmyaccount.google.com%2Fsigninoptions%2Fpassword%3Fhl%3Des%26pli%3D1&flowName=GlifWebSignIn&hl=es&ifkv=Af_xneFe2uev3iMm4JUPuQgJGf7jAQNvcne1kZHm5gkfW5-VmyU6fhOI6ABBvvRN49xtl8dyfTCV&kdi=CAM&rart=ANgoxcf-0fO0c-fn1HIFgaRNxph7ZcRlYTtu9NRVC6izv7qLmrYSh0lFBNqGOEn__mQmQOHCVbpYKKY8i9bdlB-oMIg6MTm7Jg&sarp=1&scc=1&service=accountsettings&flowEntry=ServiceLogin:john@example.com"
+                               id="idcorreo">nombre@gmail.com</a>
+                        </div>
+                    </div>
+                }
+            }
+
+            <div id="invoice">
+                <h1>Reporte</h1>
+                @{
+                    DateTime hoy = DateTime.Now;
+
+                    string miVariable = hoy.ToString("dd/MM/yyyy");
+                    <div class="date">Fecha de Revisión: <span id="idFecha">@miVariable</span></div>
+                }
+
+            </div>
+        </div>
+        @{
+            CapaEntidad.Reporte report2 = Model.hoja1.FirstOrDefault();
+            if (report2.objPersona != null)
+            {
+                <table id="tabla" class="m-2" border="0" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <td colspan="3" class="descripcion">
+                                Por medio de la presente informo que una vez revisados los soportes de la hoja de vida de
+                                <span class="mayuscula">@report2.objPersona.PrimerNombre</span> identificado con CC N° <span>@report2.objPersona.NumeroDocumento</span>,
+                                del sindicato <span class="mayuscula">@report.objLaborale.NombreArea</span> que ingresa al subproceso(s) de
+                                <span class="mayuscula">@report2.objLaborale.NombreProceso</span>, a desarrollar actividades de tecnico administrativo
+                                <span class="mayuscula">@report2.objLaborale.NombreProceso</span>, se encuentran los siguientes documentos
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody id="idtbody">
+                        <tr>
+                            <th class="thdesc">Requisitos</th>
+                            <th class="thobservacion">Datos Personales</th>
+                            <th class="thcumple">Cumple</th>
+                        </tr>
+                        @{
+
+                            int contador = 0;
+
+
+
+                            foreach (CapaEntidad.Reporte item in Model.hoja1)
+                            {
+                                if (contador == 0)
+                                {
+
+                                    <tr>
+                                        <td class="desc">Cedula</td>
+                                        <td class="observacion">@item.objPersona.NumeroDocumento</td>
+                                        <td class="cumple"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="desc">Nombre</td>
+                                        <td class="observacion">@item.objPersona.PrimerNombre</td>
+                                        <td class="cumple"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="desc">Sexo</td>
+                                        <td class="observacion">@item.objPersona.Genero</td>
+                                        <td class="cumple"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="desc">Fecha de Nacimiento</td>
+                                        <td class="observacion">@item.objPersona.FechaNacimiente</td>
+                                        <td class="cumple"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="desc">CorreoElectronico</td>
+                                        <td class="observacion">@item.objPersona.CorreoElectronico</td>
+                                        <td class="cumple"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="desc">Sindicato /OPS</td>
+                                        <td class="observacion">@item.objLaborale.NombreArea</td>
+                                        <td class="cumple"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="desc">Actividad a Desarrollar</td>
+                                        <td class="observacion">@item.objLaborale.NombreActividad</td>
+                                        <td class="cumple"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="desc">Proceso</td>
+                                        <td class="observacion">@item.objLaborale.NombreProceso</td>
+                                        <td class="cumple"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="desc">SubProceso</td>
+                                        <td class="observacion">@item.objLaborale.NombreProceso</td>
+                                        <td class="cumple"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="desc">Fecha Ingreso</td>
+                                        <td class="observacion">@item.objLaborale.FechaIngreso</td>
+                                        <td class="cumple"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="desc">Proceso</td>
+                                        <td class="observacion">@item.objLaborale.FechaRetiro</td>
+                                        <td class="cumple"></td>
+                                    </tr>
+
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td class="desc">@item.Item</td>
+                                        <td class="observacion">@item.Observacion</td>
+                                        <td class="cumple">@item.Cumple</td>
+                                    </tr>
+                                }
+
+
+
+                                contador++;
+
+
+
+                            }
+
+
+                        }
+
+                    </tbody>
+                </table>
+                <div id="salto">
+                </div>
+                <table id="tabla" class="m-2" border="0" cellspacing="0" cellpadding="0">
+                    <tbody id="idtbody">
+                        @{
+                            int contador2 = 0;
+
+                            foreach (CapaEntidad.Reporte item in Model.hoja2)
+                            {
+                                if (contador2 == 0)
+                                {
+
+
+                                    <tr>
+                                        <th class="thdesc">Requisitos</th>
+                                        <th class="thobservacion">Datos Personales</th>
+                                        <th class="thcumple">Cumple</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="desc">@item.Item</td>
+                                        <td class="observacion">@item.Observacion</td>
+                                        <td class="cumple">@item.Cumple</td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td class="desc">@item.Item</td>
+                                        <td class="observacion">@item.Observacion</td>
+                                        <td class="cumple">@item.Cumple</td>
+                                    </tr>
+                                }
+
+                                contador2++;
+
+                            }
+                        }
+
+                    </tbody>
+                </table>
+
+                <table id="tabla" class="m-2" border="0" cellspacing="0" cellpadding="0">
+                    <tbody id="idtbody">
+                        @{
+                            if (Model.hoja3.FirstOrDefault() != null)
+                            {
+                                <div id="salto">
+                                </div>
+
+                                int contador3 = 0;
+
+                                foreach (CapaEntidad.Reporte item in Model.hoja3)
+                                {
+                                    if (contador3 == 0)
+                                    {
+
+
+                                        <tr>
+                                            <th class="thdesc">Requisitos</th>
+                                            <th class="thobservacion">Datos Personales</th>
+                                            <th class="thcumple">Cumple</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="desc">@item.Item</td>
+                                            <td class="observacion">@item.Observacion</td>
+                                            <td class="cumple">@item.Cumple</td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td class="desc">@item.Item</td>
+                                            <td class="observacion">@item.Observacion</td>
+                                            <td class="cumple">@item.Cumple</td>
+                                        </tr>
+                                    }
+
+                                    contador3++;
+                                }
+                            }
+
+                        }
+
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <table id="tabla" class="m-2" border="0" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <td colspan="3" class="descripcion">
+
+                                <span class="mayuscula" id="idSubproceso">Asegúrate de haber registrado bien los datos laborales de la persona, si no se han agregado los datos laborales a la persona, por favor hacerlo.</span>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody id="idtbody">
+                        <tr>
+                            <th class="thdesc">Requisitos</th>
+                            <th class="thobservacion">Observacion</th>
+                            <th class="thcumple">Cumple</th>
+                        </tr>
+
+                    </tbody>
+                </table>
+            }
+        }
+        <div id="thanks">
+            Es Asociado <span class="bolded">Si(  ) No(  )</span> Cumple con los requisitos para ingresar a
+            realizar actividades al HSLV
+        </div>
+        <div id="notices">
+            <div class="bolded">YOLANDA MUÑOZ MUÑOZ:</div>
+            <div class="notice">Profesional Universitario.</div>
+            <div class="notice">Gestion del Recurso Humano.</div>
+        </div>
+    </main>
+</body>
+
+</html>
+

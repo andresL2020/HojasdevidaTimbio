@@ -1,0 +1,143 @@
+D:\Users\XIMENA DIAZ\Documents\Fup\FUP 10\PASANTIA\ADMINISTRADOR DE HOJAS DE VIDA\AdministradorHV\CapaNegocio\bin\Debug\CapaNegocio.dll
+D:\Users\XIMENA DIAZ\Documents\Fup\FUP 10\PASANTIA\ADMINISTRADOR DE HOJAS DE VIDA\AdministradorHV\CapaNegocio\bin\Debug\CapaNegocio.pdb
+D:\Users\XIMENA DIAZ\Documents\Fup\FUP 10\PASANTIA\ADMINISTRADOR DE HOJAS DE VIDA\AdministradorHV\CapaNegocio\bin\Debug\CapaDatos.dll
+D:\Users\XIMENA DIAZ\Documents\Fup\FUP 10\PASANTIA\ADMINISTRADOR DE HOJAS DE VIDA\AdministradorHV\CapaNegocio\bin\Debug\CapaEntidad.dll
+D:\Users\XIMENA DIAZ\Documents\Fup\FUP 10\PASANTIA\ADMINISTRADOR DE HOJAS DE VIDA\AdministradorHV\CapaNegocio\bin\Debug\CapaDatos.pdb
+D:\Users\XIMENA DIAZ\Documents\Fup\FUP 10\PASANTIA\ADMINISTRADOR DE HOJAS DE VIDA\AdministradorHV\CapaNegocio\bin\Debug\CapaEntidad.pdb
+D:\Users\XIMENA DIAZ\Documents\Fup\FUP 10\PASANTIA\ADMINISTRADOR DE HOJAS DE VIDA\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.AssemblyReference.cache
+D:\Users\XIMENA DIAZ\Documents\Fup\FUP 10\PASANTIA\ADMINISTRADOR DE HOJAS DE VIDA\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.CoreCompileInputs.cache
+D:\Users\XIMENA DIAZ\Documents\Fup\FUP 10\PASANTIA\ADMINISTRADOR DE HOJAS DE VIDA\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.CopyComplete
+D:\Users\XIMENA DIAZ\Documents\Fup\FUP 10\PASANTIA\ADMINISTRADOR DE HOJAS DE VIDA\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.dll
+D:\Users\XIMENA DIAZ\Documents\Fup\FUP 10\PASANTIA\ADMINISTRADOR DE HOJAS DE VIDA\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.pdb
+F:\PROGRAMACION\gitkraken\AdministradorHosp\CapaNegocio\bin\Debug\CapaNegocio.dll
+F:\PROGRAMACION\gitkraken\AdministradorHosp\CapaNegocio\bin\Debug\CapaNegocio.pdb
+F:\PROGRAMACION\gitkraken\AdministradorHosp\CapaNegocio\bin\Debug\CapaDatos.dll
+F:\PROGRAMACION\gitkraken\AdministradorHosp\CapaNegocio\bin\Debug\CapaEntidad.dll
+F:\PROGRAMACION\gitkraken\AdministradorHosp\CapaNegocio\bin\Debug\CapaDatos.pdb
+F:\PROGRAMACION\gitkraken\AdministradorHosp\CapaNegocio\bin\Debug\CapaEntidad.pdb
+F:\PROGRAMACION\gitkraken\AdministradorHosp\CapaNegocio\obj\Debug\CapaNegocio.csproj.AssemblyReference.cache
+F:\PROGRAMACION\gitkraken\AdministradorHosp\CapaNegocio\obj\Debug\CapaNegocio.csproj.CoreCompileInputs.cache
+F:\PROGRAMACION\gitkraken\AdministradorHosp\CapaNegocio\obj\Debug\CapaNegocio.csproj.CopyComplete
+F:\PROGRAMACION\gitkraken\AdministradorHosp\CapaNegocio\obj\Debug\CapaNegocio.dll
+F:\PROGRAMACION\gitkraken\AdministradorHosp\CapaNegocio\obj\Debug\CapaNegocio.pdb
+C:\Users\PERSONAL\Downloads\Pasantia\AdministradorHV\CapaNegocio\bin\Debug\CapaNegocio.dll
+C:\Users\PERSONAL\Downloads\Pasantia\AdministradorHV\CapaNegocio\bin\Debug\CapaNegocio.pdb
+C:\Users\PERSONAL\Downloads\Pasantia\AdministradorHV\CapaNegocio\bin\Debug\CapaDatos.dll
+C:\Users\PERSONAL\Downloads\Pasantia\AdministradorHV\CapaNegocio\bin\Debug\CapaEntidad.dll
+C:\Users\PERSONAL\Downloads\Pasantia\AdministradorHV\CapaNegocio\bin\Debug\CapaDatos.pdb
+C:\Users\PERSONAL\Downloads\Pasantia\AdministradorHV\CapaNegocio\bin\Debug\CapaEntidad.pdb
+C:\Users\PERSONAL\Downloads\Pasantia\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.AssemblyReference.cache
+C:\Users\PERSONAL\Downloads\Pasantia\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.CoreCompileInputs.cache
+C:\Users\PERSONAL\Downloads\Pasantia\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.CopyComplete
+C:\Users\PERSONAL\Downloads\Pasantia\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.dll
+C:\Users\PERSONAL\Downloads\Pasantia\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.pdb
+C:\Users\Sebastian Gutierrez\Desktop\AdministradorHosp\CapaNegocio\bin\Debug\CapaNegocio.dll
+C:\Users\Sebastian Gutierrez\Desktop\AdministradorHosp\CapaNegocio\bin\Debug\CapaNegocio.pdb
+C:\Users\Sebastian Gutierrez\Desktop\AdministradorHosp\CapaNegocio\bin\Debug\CapaDatos.dll
+C:\Users\Sebastian Gutierrez\Desktop\AdministradorHosp\CapaNegocio\bin\Debug\CapaEntidad.dll
+C:\Users\Sebastian Gutierrez\Desktop\AdministradorHosp\CapaNegocio\bin\Debug\CapaDatos.pdb
+C:\Users\Sebastian Gutierrez\Desktop\AdministradorHosp\CapaNegocio\bin\Debug\CapaEntidad.pdb
+C:\Users\Sebastian Gutierrez\Desktop\AdministradorHosp\CapaNegocio\obj\Debug\CapaNegocio.csproj.AssemblyReference.cache
+C:\Users\Sebastian Gutierrez\Desktop\AdministradorHosp\CapaNegocio\obj\Debug\CapaNegocio.csproj.CoreCompileInputs.cache
+C:\Users\Sebastian Gutierrez\Desktop\AdministradorHosp\CapaNegocio\obj\Debug\CapaNegocio.csproj.CopyComplete
+C:\Users\Sebastian Gutierrez\Desktop\AdministradorHosp\CapaNegocio\obj\Debug\CapaNegocio.dll
+C:\Users\Sebastian Gutierrez\Desktop\AdministradorHosp\CapaNegocio\obj\Debug\CapaNegocio.pdb
+C:\Users\Sebastian Gutierrez\Documents\AdministradorHosp\CapaNegocio\bin\Debug\CapaNegocio.dll
+C:\Users\Sebastian Gutierrez\Documents\AdministradorHosp\CapaNegocio\bin\Debug\CapaNegocio.pdb
+C:\Users\Sebastian Gutierrez\Documents\AdministradorHosp\CapaNegocio\bin\Debug\CapaDatos.dll
+C:\Users\Sebastian Gutierrez\Documents\AdministradorHosp\CapaNegocio\bin\Debug\CapaEntidad.dll
+C:\Users\Sebastian Gutierrez\Documents\AdministradorHosp\CapaNegocio\bin\Debug\CapaDatos.pdb
+C:\Users\Sebastian Gutierrez\Documents\AdministradorHosp\CapaNegocio\bin\Debug\CapaEntidad.pdb
+C:\Users\Sebastian Gutierrez\Documents\AdministradorHosp\CapaNegocio\obj\Debug\CapaNegocio.csproj.AssemblyReference.cache
+C:\Users\Sebastian Gutierrez\Documents\AdministradorHosp\CapaNegocio\obj\Debug\CapaNegocio.csproj.CoreCompileInputs.cache
+C:\Users\Sebastian Gutierrez\Documents\AdministradorHosp\CapaNegocio\obj\Debug\CapaNegocio.csproj.CopyComplete
+C:\Users\Sebastian Gutierrez\Documents\AdministradorHosp\CapaNegocio\obj\Debug\CapaNegocio.dll
+C:\Users\Sebastian Gutierrez\Documents\AdministradorHosp\CapaNegocio\obj\Debug\CapaNegocio.pdb
+F:\proyecto seminario empresarial\proyecto avanzado\v7\Pasantia\AdministradorHV\CapaNegocio\bin\Debug\CapaNegocio.dll
+F:\proyecto seminario empresarial\proyecto avanzado\v7\Pasantia\AdministradorHV\CapaNegocio\bin\Debug\CapaNegocio.pdb
+F:\proyecto seminario empresarial\proyecto avanzado\v7\Pasantia\AdministradorHV\CapaNegocio\bin\Debug\CapaDatos.dll
+F:\proyecto seminario empresarial\proyecto avanzado\v7\Pasantia\AdministradorHV\CapaNegocio\bin\Debug\CapaEntidad.dll
+F:\proyecto seminario empresarial\proyecto avanzado\v7\Pasantia\AdministradorHV\CapaNegocio\bin\Debug\CapaDatos.pdb
+F:\proyecto seminario empresarial\proyecto avanzado\v7\Pasantia\AdministradorHV\CapaNegocio\bin\Debug\CapaEntidad.pdb
+F:\proyecto seminario empresarial\proyecto avanzado\v7\Pasantia\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.AssemblyReference.cache
+F:\proyecto seminario empresarial\proyecto avanzado\v7\Pasantia\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.CoreCompileInputs.cache
+F:\proyecto seminario empresarial\proyecto avanzado\v7\Pasantia\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.CopyComplete
+F:\proyecto seminario empresarial\proyecto avanzado\v7\Pasantia\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.dll
+F:\proyecto seminario empresarial\proyecto avanzado\v7\Pasantia\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.pdb
+F:\proyecto seminario empresarial\proyecto avanzado p2\AdministradorHV\CapaNegocio\bin\Debug\CapaNegocio.dll
+F:\proyecto seminario empresarial\proyecto avanzado p2\AdministradorHV\CapaNegocio\bin\Debug\CapaNegocio.pdb
+F:\proyecto seminario empresarial\proyecto avanzado p2\AdministradorHV\CapaNegocio\bin\Debug\CapaDatos.dll
+F:\proyecto seminario empresarial\proyecto avanzado p2\AdministradorHV\CapaNegocio\bin\Debug\CapaEntidad.dll
+F:\proyecto seminario empresarial\proyecto avanzado p2\AdministradorHV\CapaNegocio\bin\Debug\CapaDatos.pdb
+F:\proyecto seminario empresarial\proyecto avanzado p2\AdministradorHV\CapaNegocio\bin\Debug\CapaEntidad.pdb
+F:\proyecto seminario empresarial\proyecto avanzado p2\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.AssemblyReference.cache
+F:\proyecto seminario empresarial\proyecto avanzado p2\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.CoreCompileInputs.cache
+F:\proyecto seminario empresarial\proyecto avanzado p2\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.CopyComplete
+F:\proyecto seminario empresarial\proyecto avanzado p2\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.dll
+F:\proyecto seminario empresarial\proyecto avanzado p2\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.pdb
+C:\Users\PERSONAL\Desktop\Ultimo\AdministradorHV\CapaNegocio\bin\Debug\CapaNegocio.dll
+C:\Users\PERSONAL\Desktop\Ultimo\AdministradorHV\CapaNegocio\bin\Debug\CapaNegocio.pdb
+C:\Users\PERSONAL\Desktop\Ultimo\AdministradorHV\CapaNegocio\bin\Debug\CapaDatos.dll
+C:\Users\PERSONAL\Desktop\Ultimo\AdministradorHV\CapaNegocio\bin\Debug\CapaEntidad.dll
+C:\Users\PERSONAL\Desktop\Ultimo\AdministradorHV\CapaNegocio\bin\Debug\CapaDatos.pdb
+C:\Users\PERSONAL\Desktop\Ultimo\AdministradorHV\CapaNegocio\bin\Debug\CapaEntidad.pdb
+C:\Users\PERSONAL\Desktop\Ultimo\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.AssemblyReference.cache
+C:\Users\PERSONAL\Desktop\Ultimo\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.CoreCompileInputs.cache
+C:\Users\PERSONAL\Desktop\Ultimo\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.CopyComplete
+C:\Users\PERSONAL\Desktop\Ultimo\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.dll
+C:\Users\PERSONAL\Desktop\Ultimo\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.pdb
+C:\Users\USUARIO\Desktop\AdministradorHV\CapaNegocio\bin\Debug\CapaNegocio.dll
+C:\Users\USUARIO\Desktop\AdministradorHV\CapaNegocio\bin\Debug\CapaNegocio.pdb
+C:\Users\USUARIO\Desktop\AdministradorHV\CapaNegocio\bin\Debug\CapaDatos.dll
+C:\Users\USUARIO\Desktop\AdministradorHV\CapaNegocio\bin\Debug\CapaEntidad.dll
+C:\Users\USUARIO\Desktop\AdministradorHV\CapaNegocio\bin\Debug\CapaDatos.pdb
+C:\Users\USUARIO\Desktop\AdministradorHV\CapaNegocio\bin\Debug\CapaEntidad.pdb
+C:\Users\USUARIO\Desktop\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.AssemblyReference.cache
+C:\Users\USUARIO\Desktop\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.CoreCompileInputs.cache
+C:\Users\USUARIO\Desktop\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.CopyComplete
+C:\Users\USUARIO\Desktop\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.dll
+C:\Users\USUARIO\Desktop\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.pdb
+C:\Users\PERSONAL\Downloads\pasantia v3\AdministradorHV\CapaNegocio\bin\Debug\CapaNegocio.dll
+C:\Users\PERSONAL\Downloads\pasantia v3\AdministradorHV\CapaNegocio\bin\Debug\CapaNegocio.pdb
+C:\Users\PERSONAL\Downloads\pasantia v3\AdministradorHV\CapaNegocio\bin\Debug\CapaDatos.dll
+C:\Users\PERSONAL\Downloads\pasantia v3\AdministradorHV\CapaNegocio\bin\Debug\CapaEntidad.dll
+C:\Users\PERSONAL\Downloads\pasantia v3\AdministradorHV\CapaNegocio\bin\Debug\CapaDatos.pdb
+C:\Users\PERSONAL\Downloads\pasantia v3\AdministradorHV\CapaNegocio\bin\Debug\CapaEntidad.pdb
+C:\Users\PERSONAL\Downloads\pasantia v3\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.AssemblyReference.cache
+C:\Users\PERSONAL\Downloads\pasantia v3\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.CoreCompileInputs.cache
+C:\Users\PERSONAL\Downloads\pasantia v3\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.CopyComplete
+C:\Users\PERSONAL\Downloads\pasantia v3\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.dll
+C:\Users\PERSONAL\Downloads\pasantia v3\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.pdb
+D:\Nueva carpeta\pasantia v3\AdministradorHV\CapaNegocio\bin\Debug\CapaNegocio.dll
+D:\Nueva carpeta\pasantia v3\AdministradorHV\CapaNegocio\bin\Debug\CapaNegocio.pdb
+D:\Nueva carpeta\pasantia v3\AdministradorHV\CapaNegocio\bin\Debug\CapaDatos.dll
+D:\Nueva carpeta\pasantia v3\AdministradorHV\CapaNegocio\bin\Debug\CapaEntidad.dll
+D:\Nueva carpeta\pasantia v3\AdministradorHV\CapaNegocio\bin\Debug\CapaDatos.pdb
+D:\Nueva carpeta\pasantia v3\AdministradorHV\CapaNegocio\bin\Debug\CapaEntidad.pdb
+D:\Nueva carpeta\pasantia v3\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.AssemblyReference.cache
+D:\Nueva carpeta\pasantia v3\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.CoreCompileInputs.cache
+D:\Nueva carpeta\pasantia v3\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.CopyComplete
+D:\Nueva carpeta\pasantia v3\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.dll
+D:\Nueva carpeta\pasantia v3\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.pdb
+C:\Users\USUARIO\Desktop\pasantia v3\AdministradorHV\CapaNegocio\bin\Debug\CapaNegocio.dll
+C:\Users\USUARIO\Desktop\pasantia v3\AdministradorHV\CapaNegocio\bin\Debug\CapaNegocio.pdb
+C:\Users\USUARIO\Desktop\pasantia v3\AdministradorHV\CapaNegocio\bin\Debug\CapaDatos.dll
+C:\Users\USUARIO\Desktop\pasantia v3\AdministradorHV\CapaNegocio\bin\Debug\CapaEntidad.dll
+C:\Users\USUARIO\Desktop\pasantia v3\AdministradorHV\CapaNegocio\bin\Debug\CapaDatos.pdb
+C:\Users\USUARIO\Desktop\pasantia v3\AdministradorHV\CapaNegocio\bin\Debug\CapaEntidad.pdb
+C:\Users\USUARIO\Desktop\pasantia v3\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.AssemblyReference.cache
+C:\Users\USUARIO\Desktop\pasantia v3\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.CoreCompileInputs.cache
+C:\Users\USUARIO\Desktop\pasantia v3\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.csproj.CopyComplete
+C:\Users\USUARIO\Desktop\pasantia v3\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.dll
+C:\Users\USUARIO\Desktop\pasantia v3\AdministradorHV\CapaNegocio\obj\Debug\CapaNegocio.pdb
+C:\Users\PERSONAL\Downloads\pasantia v4\AdministradorHosp-feature10\CapaNegocio\bin\Debug\CapaNegocio.dll
+C:\Users\PERSONAL\Downloads\pasantia v4\AdministradorHosp-feature10\CapaNegocio\bin\Debug\CapaNegocio.pdb
+C:\Users\PERSONAL\Downloads\pasantia v4\AdministradorHosp-feature10\CapaNegocio\bin\Debug\CapaDatos.dll
+C:\Users\PERSONAL\Downloads\pasantia v4\AdministradorHosp-feature10\CapaNegocio\bin\Debug\CapaEntidad.dll
+C:\Users\PERSONAL\Downloads\pasantia v4\AdministradorHosp-feature10\CapaNegocio\bin\Debug\CapaDatos.pdb
+C:\Users\PERSONAL\Downloads\pasantia v4\AdministradorHosp-feature10\CapaNegocio\bin\Debug\CapaEntidad.pdb
+C:\Users\PERSONAL\Downloads\pasantia v4\AdministradorHosp-feature10\CapaNegocio\obj\Debug\CapaNegocio.csproj.AssemblyReference.cache
+C:\Users\PERSONAL\Downloads\pasantia v4\AdministradorHosp-feature10\CapaNegocio\obj\Debug\CapaNegocio.csproj.CoreCompileInputs.cache
+C:\Users\PERSONAL\Downloads\pasantia v4\AdministradorHosp-feature10\CapaNegocio\obj\Debug\CapaNegocio.csproj.CopyComplete
+C:\Users\PERSONAL\Downloads\pasantia v4\AdministradorHosp-feature10\CapaNegocio\obj\Debug\CapaNegocio.dll
+C:\Users\PERSONAL\Downloads\pasantia v4\AdministradorHosp-feature10\CapaNegocio\obj\Debug\CapaNegocio.pdb

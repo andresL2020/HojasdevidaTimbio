@@ -1,0 +1,470 @@
+﻿
+@{
+    ViewBag.Title = "RlegalesView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+@*@{
+        ViewBag.Title = "RlegalesView";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }*@
+
+<br>
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-gavel"></i> Requisitos legales
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <br>
+            <div class="hola1">
+                <button type="button" class="btn btn-primary" onclick="abrirmodal(null)">Crear Requisito Legal</button>
+                @{ 
+                    Session["Revision"] = 0;
+                }
+                @if ((int)Session["Revision"] != 0  || HttpContext.Current.Session["Revision"] != null)
+                {
+                    <button type="button" onclick="TerminarRevision()" class="btn btn-success">Terminar Revision</button>
+                }
+
+            </div>
+
+            <br>
+            <br>
+            <hr />
+            <table id="tablaRl" class="display cell-border" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Fecha Expedición</th>
+                        @*<th>Ver adjunto</th>*@
+                        <th>id rlegal</th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalRL" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header text-light" style="background: #000000">
+                <h5 class="modal-title" id="exampleModalLabel">Formulario Requisitos Legales</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+
+                <div style="width: 85%; margin: 0 auto;">
+
+
+                    <section>
+
+                        <form class="row g-3 needs-validation" novalidate id="formRlegales">
+                            <input type="text" id="txtIdRL" value="0" style="display: none;" />
+
+                            <div class="col-md-4 form-check-inline">
+                                <label for="txtPersonRequisito" class="form-label" style="margin-top: 20px"><b>Actividad</b></label>
+                                <p class="form-label text-primary" id="idActividad" style="font-size: 13px">Nombre de la actividad</p>
+                            </div>
+                            <hr>
+
+                            <div class="col-md-4">
+                                <label for="rLegal" class="form-label">Seleccione Tipo de documento</label>
+                                <select class="form-control" name="rLegal" id="rLegal" required autocomplete="off">
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="txtFechaEXP" class="form-label">Fecha expedición</label>
+                                <input type="text" class="form-control" id="txtFechaEXP" placeholder="dd-mm-yy" required autocomplete="off">
+                                <div class="invalid-feedback">
+                                    Please provide a valid zip.
+                                </div>
+                            </div>
+
+                            <div class="col-md-5">
+                                <label for="formRl" class="form-label">Buscar archivo para adjuntar</label>
+                                <input class="form-control" type="file" id="formRl">
+                            </div>
+                            <hr>
+                        </form>
+
+                    </section>
+
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <div id="mensajEerror" class="alert alert-danger" role="alert">
+                                A simple danger alert—check it out!
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary" onclick="Guardar()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="FormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="respuesta"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalresult" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Mensaje</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+
+                Guardado Correctamente
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+
+        $("#txtFechaEXP").datepicker({ dateFormat: 'yy-mm-dd'}).datepicker('setDate',new Date())
+
+        var tabladata;
+        var filaSeleccionada;
+
+
+
+       jQuery.ajax({
+                url: '@Url.Action("ListarRequisitos", "Sindicato")',
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    console.log(response)
+                    $("#idNombrec").text(response.data.NombreCompleto)
+
+                }
+
+            })
+
+        function TerminarRevision() {
+
+            jQuery.ajax({
+            url: '@Url.Action("TerminarRegistro", "Sindicato")',
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+
+
+                if (data.resultado) {
+
+                    console.log("true")
+
+
+                    $("#FormModal").modal("show");
+                    $("#respuesta").text(data.mensaje)
+                    $('#respuesta').removeClass('text-danger');
+                    $('#respuesta').addClass('text-primary');
+
+                } else {
+
+                    $("#FormModal").modal("show");
+                    $("#respuesta").text(data.mensaje)
+                    $('#respuesta').removeClass('text-primary');
+                    $('#respuesta').addClass('text-danger');
+                }
+
+
+            }
+
+         })
+        }
+
+        jQuery.ajax({
+            url: '@Url.Action("ListarDatosLaborales", "Sindicato")',
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                //var dLaboral = data.data.NombreActividad
+                //$("#idNombrec").val(data.data.NombreActividad)
+                //$("#idNombrec").text(dLaboral)
+                $.each(data.data, function (i, element) {
+                    $("#idActividad").val(element.IdActividad)
+                    listarRequisitos()
+                })
+            }
+
+        })
+
+
+        tabladata = $("#tablaRl").DataTable({
+            responsive: true,
+            ordering: false,
+            "ajax": {
+                url: '@Url.Action("ListarRlegales", "Sindicato")',
+                type: "GET",
+                dataType: "json",
+            },
+            "columns": [
+                { "data": "IdRequisitosLegales" },
+                { "data": "FechaExpedicion" },
+                //{ "data": "archivoNombre" },
+                { "data": "IdCrearRequisitoLegal" },
+
+
+                {
+                    "defaultContent": '<button type="button" class="btn btn-primary btn-sm btn-editarRl"><i class="fas fa-pen"></i></button>' +
+                        '<button type="button" class="btn btn-danger btn-sm ms-2 btn-eliminarRequisito"><i class="fas fa-trash"></i></button>',
+                    "orderable": false,
+                    "searchable": false,
+                    "width":"90px"
+                }
+            ],
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.13.3/i18n/es-ES.json"
+        }
+
+        });
+
+        function listarRequisitos() {
+               jQuery.ajax({
+                url: '@Url.Action("ListarParaSindicato", "Sindicato")',
+                type: "POST",
+                data: JSON.stringify({ idActividad: $("#idActividad").val() }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+
+                    $("#rLegal").empty();
+                    $.each(response.data, function (i, element) {
+                        $("#idActividad").text(element.oActividad.NombreActividad)
+
+                        //if (element.oRequisitoLegal.IdCrearRequisitoLegal == requisito) {
+                        //    $("<option>").attr({ "name": element.oRequisitoLegal.NombreRequisito, "value": element.oRequisitoLegal.IdCrearRequisitoLegal, "id": "a" + i, "selected":"selected" }).text(element.oRequisitoLegal.NombreRequisito).appendTo("#rLegal")
+                        //} else {
+                        //    $("<option>").attr({ "name": element.oRequisitoLegal.NombreRequisito, "value": element.oRequisitoLegal.IdCrearRequisitoLegal, "id": "a" + i }).text(element.oRequisitoLegal.NombreRequisito).appendTo("#rLegal")
+                        //}
+                        $("<option>").attr({ "name": element.oRequisitoLegal.NombreRequisito, "value": element.oRequisitoLegal.IdCrearRequisitoLegal, "id": "a" + i }).text(element.oRequisitoLegal.NombreRequisito).appendTo("#rLegal")
+
+
+                    })
+
+
+                }
+
+            })
+        }
+
+        function abrirmodal(json) {
+
+            //var requisito = 0
+
+            //if (json != null) {
+            //    requisito = json.IdCrearRequisitoLegal;
+            //}
+
+            document.getElementById("formRlegales").reset();
+            $("#txtIdRL").val(0);
+            $("#mensajEerror").hide();
+
+
+
+
+
+            if (json != null) {
+
+                $("#txtIdRL").val(json.IdRequisitosLegales);
+                $("#txtFechaEXP").val(json.FechaExpedicion);
+                $("#rLegal").val(json.IdCrearRequisitoLegal);
+
+
+                //$("#rLegal").text(json.FechaExpedicion)
+
+                //if (json.Archivo != null) {
+                //    $("#formRl").text(json.Archivo.nombre);
+                //}
+
+                //$("#formAdjuntar").val(json.Archivo);
+
+
+                //bool graduado = json.Graduado == "true";
+
+            }
+
+
+            $("#ModalRL").modal("show");
+        }
+
+        //Editar
+        $("#tablaRl tbody").on("click", '.btn-editarRl', function () {
+
+            var filaSeleccionada = $(this).closest("tr");
+            var data = tabladata.row(filaSeleccionada).data();
+
+            abrirmodal(data)
+
+        })
+
+
+
+        $("#tablaRl tbody").on("click", '.btn-eliminarRequisito', function () {
+
+            var requisitoseleccionado = $(this).closest("tr");
+            var data = tabladata.row(requisitoseleccionado).data();
+
+            swal({
+                title: "¿Esta seguro?",
+                text: "Desea eliminar el requisito legal ?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-primary",
+                confirmButtonText: "Si!",
+                cancelButtonText: "No, cancelar",
+                closeOnConfirm: true
+
+            },
+
+                function () {
+                    jQuery.ajax({
+                        url: '@Url.Action("EliminarRequisito", "Sindicato")',
+                        type: "POST",
+                        data: JSON.stringify({ id: data.IdRequisitosLegales }),
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+
+                            if (data.resultado) {
+                                tabladata.row(requisitoseleccionado).remove().draw();
+
+                            } else {
+                                swal("Error al eliminar", data.mensaje, "error")
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        },
+
+                    });
+
+                });
+        })
+
+        function Guardar() {
+
+            var RlegalesG = {
+
+                IdRequisitosLegales: $("#txtIdRL").val(),
+                FechaExpedicion: $("#txtFechaEXP").val(),
+            }
+
+            console.log($("#rLegal").val())
+            console.log($("#formRl")[0].files[0])
+
+            var formData = new FormData();
+            formData.append("IdRequisitosLegales", $("#txtIdRL").val());
+            formData.append("FechaExpedicion", $("#txtFechaEXP").val());
+            formData.append("archivoNombre", $("#formRl")[0].files[0]);
+            formData.append("IdCrearRequisitoLegal", $("#rLegal").val());
+
+            //console.info($("#formFile")[0].files[0]);
+
+            if ($("#formRl")[0].files[0] == undefined) {
+
+                $("#mensajEerror").text("El campo para adjuntar pdf no puede ser vacio")
+                $("#mensajEerror").show()
+
+            } else {
+
+                jQuery.ajax({
+                url: '@Url.Action("GuardarRlegales", "Sindicato")',
+                type: "POST",
+                data: formData,
+                cache: false,
+                processData: false,
+                cache:false,
+                contentType: false,
+                success: function (data) {
+
+                     //Usuario Nuevo
+                    if (RlegalesG.IdRequisitosLegales == 0) {
+
+                            if (data.resultado != 0) {
+
+                                RlegalesG.IdRequisitosLegales = data.resultado;
+                                tabladata.row.add(RlegalesG).draw(false);
+                                $("#ModalRL").modal("hide");
+                            } else {
+
+
+                                $("#mensajEerror").text(data.mensaje)
+                                $("#mensajEerror").show()
+                                $("#modalresult").modal("show")
+                            }
+
+                            //Usuario Editar
+                    }
+                    else {
+
+                        if (data.resultado) {
+
+                            tabladata.row(filaSeleccionada).data(RlegalesG).draw(false);
+                            filaSeleccionada = null;
+                            $("#ModalRL").modal("hide");
+                            $("#modalresult").modal("show");
+
+                        } else {
+                            $("#mensajEerror").text(data.mensaje)
+                            $("#mensajEerror").show()
+                        }
+
+
+                    }
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            });
+
+            }
+
+         }
+
+    </script>
+}
+
+
+

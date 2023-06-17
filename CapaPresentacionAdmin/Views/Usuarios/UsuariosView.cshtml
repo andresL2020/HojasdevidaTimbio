@@ -1,0 +1,353 @@
+﻿
+@{
+    ViewBag.Title = "UsuariosView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="hola">
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <i class="fas fa-user"></i> Usuarios Admin
+        </div>
+        <div class="card-body">
+            <div class="row">
+
+                <br>
+                <div class="hola1">
+                    <button type="button" class="btn btn-primary" onclick="abrirmodal(null)">Crear Usuario</button>
+                </div>
+                <br>
+                <br>
+                <hr>
+                <table id="tablausu" class="display cell-border" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Correo</th>
+                            <th>Activo</th>
+                            <th>Rol</th>
+                            
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="FormMoUsuarios" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" />
+        <div class="modal-content">
+            <div class="modal-header text-light" style="background: #000000">
+                <h5 class="modal-title" id="exampleModalLabel">Registro De Usuarios Administrativos </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div style="width: 85%; margin: 0 auto;">
+                    <section>
+
+                        <form class="row g-3 needs-validation" novalidate id="formUsuarios">
+                            <input type="text" class="form-control" id="txtIdUsuarios" value="0" style="display: none;">
+                            <h4 style="text-align:center ">Usuarios</h4>
+                            <hr>
+                            <div class="col-md-5 form-check-inline">
+                                <label for="txtNombre" class="form-label">Nombres</label>
+                                <input type="text" class="form-control" id="txtNombre" required autocomplete="off">
+                            </div>
+                            <div class="col-md-5 form-check-inline">
+                                <label for="txtApellido" class="form-label">Apellidos</label>
+                                <input type="text" class="form-control" id="txtApellido" required autocomplete="off">
+                            </div>
+                            <div class="col-md-5 form-check-inline">
+                                <label for="txtCorreo" class="form-label">Correo</label>
+                                <input type="text" class="form-control" id="txtCorreo" required autocomplete="off">
+                            </div>
+                            <div class="col-md-5 form-check-inline">
+                                <label for="txtFecharegistro" class="form-label">Fecha Registro</label>
+                                <input type="text" class="form-control" id="txtFecharegistro" required autocomplete="off">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="txtActivo" class="form-label">Estado</label>
+                                <select class="form-control" name="txtActivo" id="txtActivo" required autocomplete="off">
+                                    <option value="Seleccione" required selected>Seleccione</option>
+                                    <option value="1" required>Activo</option>
+                                    <option value="0" required>Inactivo</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="txtRol" class="form-label">Rol</label>
+                                <select class="form-control" name="txtRol" id="txtRol" required autocomplete="off">
+                                    <option value="Seleccione" required selected>Seleccione</option>
+                                    <option value="1" required>Administrador</option>
+                                    <option value="2" required>Sindicato</option>
+                                    <option value="3" required>Gestion Humana Visualizador</option>
+                                    <option value="4" required>Gestion Humana Verificador</option>
+                                </select>
+                            </div>
+
+                        </form>
+
+                    </section>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <div id="mensajEerror" class="alert alert-danger" role="alert">
+                                A simple danger alert—check it out!
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary" onclick="Guardar()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+        $("#txtFecharegistro").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker('setDate', new Date())
+
+        var tabladata;
+        var filaSeleccionada;
+
+
+
+        tabladata = $("#tablausu").DataTable({
+            responsive: true,
+            ordering: false,
+            "ajax": {
+                url: '@Url.Action("ListarUsuarios", "Usuarios")',
+                type: "GET",
+                dataType: "json",
+            },
+            "columns": [
+                { "data": "Nombres" },
+                { "data": "Apelldios" },
+                { "data": "Correo" },
+                { "data": "Activo", "render": function (valor) {
+                        if (valor) {
+                            return '<span class="badge bg-success"> SI</span>';
+                        } else {
+                            return '<span class="badge bg-danger"> NO</span>';
+                    }
+                    }
+
+                },
+                {
+                    "data": "IdRol", "render": function (valor) {
+                        if (valor == 1) {
+                            return '<p>Administrador</p>';
+                        } else if (valor == 2) {
+                            return '<p>Sindicato</p>';
+                        } else if (valor == 3) {
+                            return '<p>Gestion Humana Visualizador</p>';
+                        } else if (valor == 4) {
+                            return '<p>Gestion Humana Verificador</p>';
+                        }
+                    }
+
+                },
+                
+                
+
+
+
+                {
+                    "defaultContent": '<button type="button" class="btn btn-primary btn-sm btn-editarUsuario"><i class="fas fa-pen"></i></button>' +
+                        '<button type="button" class="btn btn-danger btn-sm ms-2 btn-eliminarUsuario"><i class="fas fa-trash"></i></button>',
+                    "orderable": false,
+                    "searchable": false,
+                    "width": "90px"
+                }
+            ],
+            "language": {
+                "url":"https://cdn.datatables.net/plug-ins/1.13.3/i18n/es-ES.json"
+            }
+
+        })
+
+        function abrirmodal(json) {
+            document.getElementById("formUsuarios").reset();
+            $("#txtIdUsuarios").val(0);
+            $("#mensajEerror").hide();
+
+
+            if (json != null) {
+
+                $("#txtIdUsuarios").val(json.IdUsuario);
+                $("#txtNombre").val(json.Nombres);
+                $("#txtApellido").val(json.Apelldios);
+                $("#txtCorreo").val(json.Correo);
+                $("#txtActivo").val(json.Activo == true ? "1" : "0");
+                $("#txtFecharegistro").val(json.Fecharegistro);
+                $("#txtFecharegistro").val(json.Fecharegistro);
+
+
+                $("#txtRol").val(json.IdRol);
+
+
+
+            }
+
+            $("#FormMoUsuarios").modal("show");
+        }
+
+        //Editar
+        $("#tablausu tbody").on("click", '.btn-editarUsuario', function () {
+
+            var filaSeleccionada = $(this).closest("tr");
+            var data = tabladata.row(filaSeleccionada).data();
+
+             abrirmodal(data)
+
+        })
+
+        //Eliminar
+
+        $("#tablausu tbody").on("click", '.btn-eliminarUsuario', function () {
+
+            var usuarioseleccionado = $(this).closest("tr");
+            var data = tabladata.row(usuarioseleccionado).data();
+
+            swal({
+                title: "¿Esta seguro?",
+                text: "Desea eliminar el usuario ?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-primary",
+                confirmButtonText: "Si!",
+                cancelButtonText: "No, cancelar",
+                closeOnConfirm: true
+
+            },
+                function () {
+                    jQuery.ajax({
+                        url: '@Url.Action("EliminarUsuario", "Usuarios")',
+                        type: "POST",
+                        data: JSON.stringify({ id: data.IdUsuario }),
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+
+                            if (data.resultado) {
+                                tabladata.row(usuarioseleccionado).remove().draw();
+
+                            } else {
+                                swal("Error al eliminar", data.mensaje, "error")
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        },
+
+                    });
+
+                });
+        })
+
+
+         //Nombres, Apelldios, Correo, Clave, Reestablecer, Activo, Fecharegistro
+        function Guardar() {
+            var Activo = $("#txtActivo").val();
+
+            if (Activo == "Seleccione") {
+                $("#mensajEerror").text("Por Favor, Seleccione un estado.")
+                $("#mensajEerror").show()
+            } else {
+
+                var UsuariosG = {
+
+                IdUsuario: $("#txtIdUsuarios").val(),
+                Nombres: $("#txtNombre").val(),
+                Apelldios: $("#txtApellido").val(),
+                Correo: $("#txtCorreo").val(),
+                Activo: $("#txtActivo").val() == 1 ? true : false,
+                Fecharegistro: $("#txtFecharegistro").val(),
+                IdRol: $("#txtRol").val(),
+
+            }
+
+
+
+             jQuery.ajax({
+                url: '@Url.Action("GuardarUsuario", "Usuarios")',
+                type: "POST",
+                 data: JSON.stringify({ objeto: UsuariosG }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                 success: function (data) {
+
+                 $(".modal-body").LoadingOverlay("hide");
+
+                     //Usuario Nuevo
+                     if (UsuariosG.IdUsuario == 0) {
+
+                         if (data.resultado != 0) {
+
+                             UsuariosG.IdUsuario = data.resultado;
+                             tabladata.row.add(UsuariosG).draw(false);
+                             $("#FormMoUsuarios").modal("hide");
+                         } else {
+
+
+                             $("#mensajEerror").text(data.mensaje)
+                             $("#mensajEerror").show()
+                         }
+
+                         //Usuario Editar
+                     }
+                        else {
+
+                         if (data.resultado) {
+
+                             tabladata.row(filaSeleccionada).data(UsuariosG).draw(false);
+                             filaSeleccionada = null;
+                             $("#FormMoUsuarios").modal("hide");
+
+                         } else {
+                             $("#mensajEerror").text(data.mensaje);
+                             $("#mensajEerror").show();
+                         }
+
+
+                     }
+                 },
+
+                 error: function (error) {
+                     $(".modal-body").LoadingOverlay("hide");
+                     $("#mensajEerror").text("Error ajax")
+                     $("#mensajEerror").show()
+
+                 },
+
+                 beforeSend: function () {
+                     $(".modal-body").LoadingOverlay("show", {
+                         imageResizeFactor: 2,
+                         text: "Cargando...",
+                         size : 14
+                     })
+                 }
+
+            });
+
+            }
+
+         }
+
+    </script>
+}
+
+

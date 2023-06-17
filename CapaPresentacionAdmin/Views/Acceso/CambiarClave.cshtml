@@ -1,0 +1,77 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CambiarClave</title>
+    <link href="~/Content/Login.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="login">
+        <div class="container-fluid border shadow-sm p-3 mb-5 bg-body rounded">
+            <div class="row">
+                <div class="col-sm-6 text-black">
+                    <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+                        <form style="width: 23rem;" action="@Url.Action("CambiarClave","Acceso")" method="post">
+
+                            <input type="text" value=" @TempData["IdUsuario"]" class="form-control form-control-lg" name="Idusuario" />
+
+                            <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Cambiar Contraseña</h3>
+
+                            <div class="form-outline mb-4">
+                                <input type="password" class="form-control form-control-lg" name="claveactual" value=" @ViewData["vclave"]" />
+                                <label class="form-label" for="form2Example28">Contraseña actual</label>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="password" class="form-control form-control-lg" name="nuevaclave" />
+                                <label class="form-label" for="form2Example28">Nueva contraseña</label>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="password" class="form-control form-control-lg" name="confirmarclave" />
+                                <label class="form-label" for="form2Example28">Confirma nueva contraseña</label>
+                            </div>
+
+                            @{
+                                if (ViewBag.Error != null)
+                                {
+                                    <div class="form-outline mb-4">
+                                        <div class="alert alert-danger" role="alert">
+                                            @ViewBag.Error
+                                        </div>
+                                    </div>
+
+                                }
+                            }
+
+
+                            <div class="pt-1 mb-4">
+                                <button class="btn btn-info btn-lg btn-block " type="submit" style="background: hsl(224, 67%, 38%);color: white;">Cambiar contraseña</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="col-sm-6 px-0 d-none d-sm-block ajusteimg">
+                    <img src="~/Content/images/292244152_415367150616799_892335905339182029_n.jpg" alt="Login image" class="imag" />
+                </div>
+
+            </div>
+
+        </div>
+        <div class="text-center" py-8>
+            <div class="small"><a href="@Url.Action("Index","Acceso")">Volver</a></div>
+        </div>
+    </section>
+    <script src="~/Scripts/bootstrap.bundle.js"></script>
+</body>
+</html>
+

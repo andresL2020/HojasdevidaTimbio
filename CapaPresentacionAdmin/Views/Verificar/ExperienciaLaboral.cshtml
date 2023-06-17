@@ -1,0 +1,313 @@
+﻿
+@{
+    ViewBag.Title = "ExperienciaLaboral";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mb-3 mt-2">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow p-3 mb-4 bg-body rounded border border-1" style="width:100%">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="@Url.Action("Buscar","Verificar")">Buscar</a>
+                    <a class="nav-link" href="@Url.Action("DatosPersonales","Verificar")">Datos Personales</a>
+                    <a class="nav-link" href="@Url.Action("FormacionAcademica","Verificar")">Formacion Academica</a>
+                    <a class="nav-link" href="@Url.Action("Capacitaciones","Verificar")">Cursos</a>
+                    <a class="nav-link" href="@Url.Action("Idiomas","Verificar")">Idiomas</a>
+                    <a class="nav-link text-primary" href="@Url.Action("ExperienciaLaboral","Verificar")">ExLaboral</a>
+                    <a class="nav-link" href="@Url.Action("DatosLaborales","Verificar")">Datos Laborales</a>
+                    <a class="nav-link" href="@Url.Action("Requisitos","Verificar")">Requisitos</a>
+                    <a class="nav-link" href="@Url.Action("Reporte","Verificar")">Reporte</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-briefcase"></i>  <span class="text-secondary">Verificar Hoja De Vida/ Experiencia Laboral</span>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-3">
+                <p class="form-label text-danger" id="idNombrec" style="font-size: 13px">NOMBRE DE LA PERSONA A VERIFICAR</p>
+            </div>
+            <div class="col-6">
+                <p class="form-label" id="idArea" for="validationCustom05" style="font-size:13px">UNION DE EMPLEADOS TRABAJADORES Y CONTRATISTAS DE LA SALUD - UTRASSALUD Gestion Humana Profecional del Talento Humano</p>
+            </div>
+            <div class="col-3">
+                <p class="form-label" id="idverific" for="validationCustom05" style="font-size:13px">Confirmado:</p>
+            </div>
+            <table id="tabla" class="table table-hover" style="width:100%; font-size:12px">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Empresa</th>
+                        <th>Dependencia</th>
+                        <th>Cargo</th>
+                        <th>Telefono</th>
+                        <th>Fecha Ingreso</th>
+                        <th>Fecha Termino</th>
+                        <th>Ver Adjunto</th>
+                        <th>Cumple</th>
+                        <th>Observacion</th>
+                        <th>......</th>
+                    </tr>
+                </thead>
+                <tbody id="bodyExpLaboral">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="FormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="exampleModalLabel">Actividad</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input id="txtidPersona" type="hidden" value="0" />
+                <input id="txtid" type="hidden" value="0" />
+                <br />
+                <label for="cboCumple" class="form-label mt-1">Cumple:</label>
+                <select id="cboCumple" class="form-select" aria-label="Default select example">
+                    <option value="Na">Na</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                </select>
+                <label for="idObservacion" class="form-label mt-2">Observacion:</label>
+                <textarea class="form-control" id="idObservacion"></textarea>
+
+                <div id="mensajeError" class="alert alert-danger mt-2" role="alert">
+                    A simple danger alert—check it out!
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="Guardar()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+
+        var filaSeleccionada;
+        var tabladata;
+
+        var Url = '@Url.Action("ListarExpLaboral", "Verificar")';
+
+
+        jQuery.ajax({
+            url: '@Url.Action("ListarFAcademica", "Verificar")',
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                $("#idNombrec").text(response.data.NombreCompleto)
+                $("#idverific").text("Confirmado: " + response.data.Verificado)
+
+                if (response.data.Verificado != 'Si') {
+                    $('#idNombrec').addClass('text-danger');
+                } else {
+                    $('#idNombrec').removeClass('text-danger');
+                    $('#idNombrec').addClass('text-primary');
+                }
+
+            }
+
+        })
+
+        jQuery.ajax({
+            url: '@Url.Action("ListarDatosLaborales", "Verificar")',
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                const dLaboral = response.data[0]
+                $("#idArea").text(dLaboral.NombreArea)
+
+
+            }
+
+        })
+
+
+        jQuery.ajax({
+            url: Url,
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+
+                $.each(response.data, function (i, element) {
+                    $("<tr>").append(
+                        $("<td>").text(element.IdExperienciaLaboral),
+                        $("<td>").text(element.EmpresaEntidad),
+                        $("<td>").text(element.Dependencia),
+                        $("<td>").text(element.CargoContratoActual),
+                        $("<td>").text(element.Telefono),
+                        $("<td>").text(element.FechaIngreso),
+                        $("<td>").text(element.FechaEgreso),
+                        $("<td>").append(
+                            $("<form>").attr({ "action": '@Url.Action("verPdExpLaboral", "Verificar")', "method": "post", "target": "_blank" }).append(
+                                $("<input>").attr({ "type": "hidden", "name": "IdexpLaboral", "value": element.IdExperienciaLaboral }),
+                                $("<button>").addClass("btn btn-outline-success btn-sm mb-2 btn-archivo").attr({ "type": "submit" }).text("Archivo"),
+
+                            ),
+
+                        ),
+                        $("<td>").text(element.Cumple),
+                        $("<td>").text(element.Observacion),
+                        $("<td>").append(
+                            $("<button>").addClass("btn btn-outline-success btn-sm btn-editar").attr({ "type": "button", "onclick": "abrirModal()" }).text("Obervacion y Guardar"),
+                        ),
+                    ).appendTo("#bodyExpLaboral")
+
+                    $("#txtidPersona").val(element.IdPersona)
+                })
+
+                //coneverti en datatable
+                tabladata = $("#tabla").DataTable({
+                    responsive: true,
+                    ordering: false,
+                    "language": {
+                        "url": "https://cdn.datatables.net/plug-ins/1.13.3/i18n/es-ES.json"
+                    }
+
+                })
+
+            }
+
+        })
+
+
+
+        //tabladata = $("#tabla").DataTable({
+        //    responsive: true,
+        //    ordering: false,
+        //    "ajax": {
+        //        url: Url,
+        //        type: "GET",
+        //        dataType: "json",
+        //    },
+        //    "columns": [
+        //        { "data": "IdExperienciaLaboral" },
+        //        { "data": "EmpresaEntidad" },
+        //        { "data": "Dependencia" },
+        //        { "data": "CargoContratoActual" },
+        //        { "data": "Telefono" },
+        //        { "data": "FechaIngreso" },
+        //        { "data": "FechaEgreso" },
+        //        {
+        //            "defaultContent": '<button type="button" class="btn btn-outline-success btn-sm mb-2">Acta</i></button>' +
+        //                '<button type="button" class="btn btn-outline-success btn-sm ">Diploma</i></button>',
+        //            "orderable": false,
+        //            "searchable": false,
+        //            "width": "90px"
+        //        },
+        //        { "data": "Cumple" },
+        //        { "data": "Observacion" },
+        //        {
+        //            "defaultContent": '<button type="button" onclick="abrirModal()" class="btn btn-outline-success btn-sm btn-editar">Obervacion y Guardar</i></button>',
+        //            "orderable": false,
+        //            "searchable": false,
+        //            "width": "90px"
+        //        }
+        //    ],
+        //    "language": {
+        //        "url": "https://cdn.datatables.net/plug-ins/1.13.3/i18n/es-ES.json"
+        //    }
+
+        //});
+
+
+        function abrirModal(json) {
+            $("#txtid").val(0)
+            $("#idObservacion").val("")
+            $("#cboCumple").val("Sin selecionar")
+
+            $("#mensajeError").hide()
+
+
+
+            if (json != null) {
+                $("#txtidPersona").val()
+                $("#txtid").val(json[0])
+                $("#cboCumple").val(json[8])
+                $("#idObservacion").val(json[9])
+
+            }
+
+
+            $("#FormModal").modal("show")
+        }
+
+
+        $("#tabla tbody").on("click", '.btn-editar', function () {
+            filaSeleccionada = $(this).closest("tr")
+
+            //data es un json porque data() retorna un json
+            var data = tabladata.row(filaSeleccionada).data()
+
+            abrirModal(data)
+
+        })
+
+
+        //-----------------------------Guardar
+        function Guardar() {
+            var IdPersona = $("#txtidPersona").val()
+            var IdExperienciaL = $("#txtid").val()
+            var Cumple = $("#cboCumple").val()
+            var Observacion = $("#idObservacion").val()
+
+            jQuery.ajax({
+                url: '@Url.Action("EditarExpLaboral", "Verificar")',
+                type: "POST",
+                data: JSON.stringify({ IdPersona: IdPersona, IdExperienciaL: IdExperienciaL, Cumple: Cumple, Observacion: Observacion }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+
+                    $(".modal-body").LoadingOverlay("hide")
+
+                    if (data.resultado) {
+                        $("#FormModal").modal("hide");
+                    } else {
+                        $("#mensajeError").text(data.mensaje)
+                        $("#mensajeError").show()
+                    }
+                    location.reload();
+
+                },
+                error: function (error) {
+                    $(".modal-body").LoadingOverlay("hide")
+                    $("#mensajeError").text("Error Ajax")
+                    $("#mensajeError").show()
+                },
+                beforeSend: function () {
+                    $(".modal-body").LoadingOverlay("show", {
+                        imageResizeFactor: 2,
+                        text: "Cargando...",
+                        size:14
+                    })
+                }
+            });
+
+        }
+
+    </script>
+
+}

@@ -1,0 +1,326 @@
+﻿
+@{
+    ViewBag.Title = "Idiomasview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div class="hola">
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <i class="fas fa-briefcase"></i> Idiomas
+        </div>
+        <div class="card-body">
+            <div class="row">
+
+                <br>
+                <div class="hola1">
+                    <button type="button" class="btn btn-primary" onclick="abrirmodal(null)">Crear Idioma</button>
+                </div>
+                <div>
+                    <div class="col-md-5 form-check-inline">
+                        <p class="form-label text-primary" id="idNombrec" style="font-size: 13px">NOMBRE DE LA PERSONA A VERIFICAR</p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <hr>
+                <table id="tabla1" class="display cell-border" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>IdIdiomas</th>
+                            <th>Idioma</th>
+                            <th>Lo Habla</th>
+                            <th>Lo Lee</th>
+                            <th>Lo Escribe</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="FormModalIdiomas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" />
+        <div class="modal-content">
+            <div class="modal-header text-light" style="background: #000000">
+                <h5 class="modal-title" id="exampleModalLabel">Formulario Idiomas </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+
+                <div style="width: 85%; margin: 0 auto;">
+                    <section>
+
+
+                        <form class="row g-3 needs-validation" novalidate id="formIidiomas">
+                            <input type="text" id="txtIdIdiomas" value="0" style="display: none;" />
+
+                            <div class="contenido_texto block " data-seccion="1">
+                               
+
+                                <div class="col-md-4 form-check-inline">
+                                    <label for="txtIdioma" class="form-label" style="margin-top: 20px"><b>Idioma</b></label>
+                                    <input type="text" class="form-control" id="txtIdioma" required autocomplete="off">
+                                    <div class="invalid-feedback">
+                                        Por favor, ingrese solo texto.
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-3">
+                                <label for="txtLoHabla" class="form-label">Lo Habla</label>
+                                <select class="form-control" name="txtLoHabla" id="txtLoHabla" required autocomplete="off">
+                                    <option value="" required>Seleccione.</option>
+                                    <option value="Regular" required>Regular</option>
+                                    <option value="Bien" required>Bien</option>
+                                    <option value="Muy Bien" required>Muy Bien</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="LoLee" class="form-label">Lo Lee</label>
+                                <select class="form-select" name="LoLee" id="LoLee" required autocomplete="off">
+                                    <option value="" required>Seleccione.</option>
+                                    <option value="Regular" required>Regular</option>
+                                    <option value="Bien" required>Bien</option>
+                                    <option value="Muy Bien" required>Muy Bien</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="txtLoEscribe" class="form-label">Lo Escribe</label>
+                                <select class="form-control" name="txtLoEscribe" id="txtLoEscribe" required autocomplete="off">
+                                    <option value="" required>Seleccione.</option>
+                                    <option value="Regular" required>Regular</option>
+                                    <option value="Bien" required>Bien</option>
+                                    <option value="Muy Bien" required>Muy Bien</option>
+                                </select>
+                            </div>
+
+
+                        </form>
+
+                    </section>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <div id="mensajEerror" class="alert alert-danger" role="alert">
+                                A simple danger alert—check it out!
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary" onclick="Guardar()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalresult" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Mensaje</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+
+                Guardado Correctamente
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        var tabladata;
+        var filaSeleccionada;
+
+
+         jQuery.ajax({
+                url: '@Url.Action("ListarRequisitos", "Sindicato")',
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    console.log(response)
+                    $("#idNombrec").text(response.data.NombreCompleto)
+
+                }
+
+            })
+
+        const inputtxtIdioma = document.getElementById("txtIdioma");
+        const validateInput = function (input) {
+            const value = input.value.trim();
+            const hasNumbers = /\d/.test(value);
+
+            if (hasNumbers) {
+                input.setCustomValidity("No se permiten números en este campo");
+                input.classList.add("is-invalid");
+            } else {
+                input.setCustomValidity("");
+                input.classList.remove("is-invalid");
+            }
+        };
+
+        inputtxtIdioma.addEventListener("input", function () {
+            validateInput(inputtxtIdioma);
+        });
+
+        jQuery.ajax({
+            url: '@Url.Action("ListarIdioma", "Sindicato")',
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                console.log(data)
+            }
+
+        })
+        tabladata = $("#tabla1").DataTable({
+            responsive: true,
+            ordering: false,
+            "ajax": {
+                url: '@Url.Action("ListarIdioma", "Sindicato")',
+                type: "GET",
+                dataType: "json",
+            },
+            "columns": [
+                { "data": "IdIdiomas"},
+                { "data": "Idioma" },
+                { "data": "LoHabla" },
+                { "data": "LoLee" },
+                { "data": "LoEscribe" },
+
+                {
+                    "defaultContent": '<button type="button" class="btn btn-primary btn-sm btn-editarIdiomas"><i class="fas fa-pen"></i></button>' +
+                    '<button type="button" class="btn btn-danger btn-sm ms-2 btn-eliminarIdioma"><i class="fas fa-trash"></i></button>',
+                    "orderable": false,
+                    "searchable": false,
+                    "width":"90px"
+                }
+            ],
+            "language": {
+                "url":"https://cdn.datatables.net/plug-ins/1.13.3/i18n/es-ES.json"
+            }
+
+        })
+
+        function abrirmodal(json) {
+            document.getElementById("formIidiomas").reset();
+            $("#txtIdIdiomas").val(0);
+            $("#mensajEerror").hide();
+
+
+            if (json != null) {
+
+                $("#txtIdIdiomas").val(json.IdIdiomas);
+                $("#txtIdioma").val(json.Idioma);
+                $("#txtLoHabla").val(json.LoHabla == "Regular" ? "Regular" : json.LoHabla == "Bien" ? "Bien" :"Muy Bien" );
+                $("#LoLee").val(json.LoLee == "Regular" ? "Regular" : json.LoLee == "Bien" ? "Bien" : "Muy Bien");
+                $("#txtLoEscribe").val(json.LoEscribe == "Regular" ? "Regular" : json.LoEscribe == "Bien" ? "Bien" : "Muy Bien");
+
+            }
+
+
+            $("#FormModalIdiomas").modal("show");
+        }
+
+        //Editar
+        $("#tabla1 tbody").on("click", '.btn-editarIdiomas', function () {
+
+            var filaSeleccionada = $(this).closest("tr");
+            var data = tabladata.row(filaSeleccionada).data();
+
+             abrirmodal(data)
+
+        })
+
+
+
+        function Guardar() {
+
+            var IdiomasG = {
+
+                IdIdiomas: $("#txtIdIdiomas").val(),
+                Idioma: $("#txtIdioma").val(),
+                LoHabla: $("#txtLoHabla").val(),
+                LoLee: $("#LoLee").val(),
+                LoEscribe: $("#txtLoEscribe").val(),
+            }
+
+
+             jQuery.ajax({
+                url: '@Url.Action("GuardarIdioma", "Sindicato")',
+                type: "POST",
+                data: JSON.stringify({objeto: IdiomasG}),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                 success: function (data) {
+
+                        //Usuario Nuevo
+                     if (IdiomasG.IdIdiomas == 0) {
+
+                         if (data.resultado != 0) {
+
+                             IdiomasG.IdIdiomas = data.resultado;
+                             tabladata.row.add(IdiomasG).draw(false);
+                             $("#FormModalIdiomas").modal("hide");
+
+                         } else {
+
+
+                             $("#mensajEerror").text(data.mensaje)
+                             $("#mensajEerror").show()
+                             $("#modalresult").modal("show");
+                         }
+
+                         //Usuario Editar
+                     }
+                        else {
+
+                         if (data.resultado) {
+
+                             tabladata.row(filaSeleccionada).data(IdiomasG).draw(false);
+                             filaSeleccionada = null;
+                             $("#FormModalIdiomas").modal("hide");
+                             $("#modalresult").modal("show");
+
+                         } else {
+                             $("#mensajEerror").text(data.mensaje)
+                             $("#mensajEerror").show()
+                         }
+
+
+                     }
+                },
+                        error: function (error) {
+                            console.log(error)
+                        }
+            });
+        }
+
+
+        
+
+    </script>
+}
+
+
+
+
